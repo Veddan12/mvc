@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <div class="title">
+        <h1>Home</h1>   
+    </div>
+    <div class="two-column-content">
+        <div class="home-content">
+            <p>Hejsan. Mitt namn är Son Goku. Ni kanske känner igen mig från mangaserien Dragon ball. Jag är en Saiyan och kommer från planeten Vegeta. <br> Jag kom till jorden som ett barn och blev adopterad av människor. Jag är superstark och snabb. Flyga kan jag också, äntligen! <br> Tyvärr har jag än inte lärt mig programmera objektorienterad php. En så länge har jag bara fått en introduktion. Mitt mål er att genom den här kursen bemästra den nya superkraften!</p>
+        </div>
+        <div class="home-side-content">
+        <figure class="figure-right">
+            <img src="{{ asset('img/goku_anime.jpg') }}" style="height: 600px; width: 250px;" alt="Bild på Goku">
+        </figure>
+        </div>
+    </div>
+{% endblock %}

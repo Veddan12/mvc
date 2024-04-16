@@ -1,0 +1,11 @@
+header {
+    height: 150px;
+}
+
+.site-header {
+    font-family: $font-family;
+    font-size: $font-size-nav-header;
+    text-transform: uppercase;
+    color: $background-color;
+    text-align: center;
+}

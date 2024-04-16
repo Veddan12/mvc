@@ -1,0 +1,42 @@
+.two-column-content {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    max-width: 800px;
+    margin-right: $margin-two-grid;
+}
+
+// About page: main-content//side-content
+.two-column-content > .main-content {
+    width: $width-main;
+}
+
+.two-column-content > .side-content {
+    width: $width-side;
+    margin-right: $margin-two-grid;
+}
+
+// Report page: report-content//side-bar
+.two-column-content > .report-content {
+    width: $width-main;
+    margin-left: $margin-two-grid;
+}
+
+.two-column-content > .side-bar {
+    width: $width-side;
+    margin-right: $margin-two-grid;
+}
+
+.side-bar {
+    border-right: 5px solid $border-color;
+    padding-left: 1em;
+    padding-right: 2em;
+    padding-top: 24px;
+}
+
+// Home-page: home-content//home-side-content(figure)
+.two-column-content > .home-content {
+    width: calc(100% - 50%);
+    margin-left: $margin-two-grid;
+    margin-top: 3.5rem;
+}

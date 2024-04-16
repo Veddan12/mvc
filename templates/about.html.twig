@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <div class="title">
+        <h1>About</h1>   
+    </div>
+    <div class="two-column-content">
+        <div class="main-content">
+            <h2>MVC kursen</h2>
+            <p>Den här webbplatsen är en del av kursen "Objektorienterade webbteknologier" vid Blekinge Tekniska Högskola. Kursens mål är att introducera konceptet objektorienterad PHP-programmering genom användning av webbaserade ramverk. En central del av kursen fokuserar därför på konceptet Model View Controller (MVC). För att tillämpa MVC principer använder vi i denna kursen Symfony ramverk. Det är ett PHP-ramverk som följer MVC-mönstret och är ett bra verktyg för att skapa robusta och skalbara webbapplikationer. Meningen med den här webbsidan är att lära sig kunna utveckla en webbapplikation som använder sig just av MVC-mönstret och integrerar ramverk som Symfony och på så sätt bredda sina kunskaper inom objektorienterad php.</p>
+            <figure class="figure-about">
+                <img src="{{ asset('img/php_mvc.jpg') }}" style="height: 270px; width: 270px;" alt="Bild på MVC">
+            </figure>
+        </div>
+        <div class="side-content">
+            <ul>
+                <li><a href="https://github.com/dbwebb-se/mvc/tree/main">MVC Git-hub repo</a></li>
+                <li><a href="https://github.com/Veddan12">Veddans Git-hub</a></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

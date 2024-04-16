@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+
+{% block body %}
+    <div class="title">
+        <h1>Report</h1>   
+    </div>
+    <div class="two-column-content">
+        <div class="report-content">
+            <h2 id="Kmom01">Kmom01</h2>
+            <p>Jag har grundläggande förståelse för objektorienterad programmering och har tidigare använt OOP-koncept i OO Python kursen. Jag är bekant med begrepp som klasser, objekt, arv, inkapsling och polymorfism.</p>
+            <p>I PHP definieras klasser med nyckelordet class, och objekt skapas från dessa klasser med nyckelordet new. För att komma igång och skapa sina första klasser behöver man förstå grundläggande koncept såsom egenskaper (properties) och metoder (methods). Egenskaper representerar just egenskaperna hos ett objekt, medan metoder definierar beteendet eller alltså funktioner. Vidare behöver man förstå hur man instansierar objekt från klasser och hur man använder dessa objekt i sin kod för att utföra olika åtgärder eller uppgifter.</p>
+            <p>Kodbasen och strukturen för uppgiften verkar vara omfattande och det blir mycket att hålla reda på. Det tror jag blir bra på långt håll när man har många routes och behöver en tydlig struktur, men just nu även då det är tydligt vad som skapar router och vad som är tamplate så måste man ändå tänka noga var exakt man ska placera olika delar av koden. I nästa kursmoment tänker jag testa att använda mig av Markdown såsom vi gjorde i Design-kursen, just nu känns det att för mycket html-kod hamnar i twig-filer. Det som också var lite svårt att hålla reda på är hantering av bilden. Jag lyckades få det som jag ville, men det var ganska petigt. Finns säkert några enkla knep som jag måste utforska framöver.</p>
+            <p>Artikeln "PHP The Right Way" är en superbra resurs för PHP-utvecklare. Den är en väldigt omfattande guide till bästa praxis och moderna sätt för att skriva ett riktigt kvalitativ PHP-kod. Jag har bläddrat igenom olika delar och just nu det som jag mest fokuserade på är delen om templates, för att vi har börjat jobba med att skapa olika views i denna kursmoment.</p>
+            <p>Under kmom01 har jag lärt mig mer om användningen av objektorienterade koncept i PHP och hur den tillämpas i ramverket Symfony. Jag har jobbat mycket med twig templates och har lärt mig skapa routes i controller.</p>
+            <h2 id="Kmom02">Kmom02</h2>
+            <p>Text text text.</p>
+        </div>
+        <div class="side-bar">
+            <ul>
+                <li><a href="#Kmom01">Kmom01</a></li>
+                <li><a href="#Kmom02">Kmom02</a></li>
+                <li><a href="#Kmom03">Kmom03</a></li>
+                <li><a href="#Kmom04">Kmom04</a></li>
+                <li><a href="#Kmom05">Kmom05</a></li>
+                <li><a href="#Kmom06">Kmom06</a></li>
+                <li><a href="#Kmom10">Kmom10</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
