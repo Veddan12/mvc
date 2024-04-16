@@ -1,4 +1,4 @@
-![image]
+![image](https://github.com/Veddan12/mvc/raw/main/assets/images/background.jpg)
 
 ## INTRO TO MVC-COURSE
 
@@ -10,7 +10,7 @@ To get started make sure you have PHP 8.3 or higher installed and the latest ver
 
 - Stand in the right directory.
 - Use the following command:
-    git clone https://github.com/vedda12/mvc/
+    git clone https://github.com/Veddan12/mvc/
 
 To run the app, start the local development server:
 
