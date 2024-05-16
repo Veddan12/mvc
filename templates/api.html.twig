@@ -10,5 +10,40 @@
     <ul>
         <li><a href="/~veda23/dbwebb-kurser/mvc/me/report/public/api/quote">Route "Quote"</a></li>
         <li><a href="/~veda23/dbwebb-kurser/mvc/me/report/public/api/lucky/number">Route "Lucky"</a></li>
+        <li><a href="/~veda23/dbwebb-kurser/mvc/me/report/public/api/">Route "Card Game"</a></li>
     </ul>
+    <h3>Card game</h3>
+    <form method="get" action="/~veda23/dbwebb-kurser/mvc/me/report/public/api/deck/">
+        <button type="submit">Sorted Deck</button>
+    </form>
+
+    <br>
+
+    <form method="post" action="/~veda23/dbwebb-kurser/mvc/me/report/public/api/deck/shuffle">
+        <button type="submit">Shuffle Deck</button>
+    </form>
+
+    <br>
+
+    <form method="post" action="/~veda23/dbwebb-kurser/mvc/me/report/public/api/deck/draw">
+        <button type="submit">Draw Single Card</button>
+    </form>
+
+    <br>
+
+    <form id="num" method="post" action="/~veda23/dbwebb-kurser/mvc/me/report/public/api/deck/draw/1">
+        <input type="number" name="number" min="1" value="1">
+        <button type="submit">Draw Multiple Cards</button>
+    </form>
+
+    <script>
+        document.getElementById('num').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = event.target;
+            var numberInput = form.querySelector('input[name="number"]');
+            var number = parseInt(numberInput.value);
+            form.action = "/~veda23/dbwebb-kurser/mvc/me/report/public/api/deck/draw/__number__".replace('__number__', number);
+            form.submit();
+        });       
+    </script>  
 {% endblock %}

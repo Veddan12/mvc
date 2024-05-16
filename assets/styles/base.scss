@@ -35,3 +35,69 @@ h1 {
 .magic-number :hover {
     color: $hover-color;
 }
+
+input {
+    font-size: 1em;
+}
+
+.die {
+    font-size: 3em;
+}
+
+.flash-notice {
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
+}
+
+.deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card {
+    width: 80px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.red {
+    color: red;
+}
+
+.symbol {
+    font-size: 40px;
+}
+
+.button .submit {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

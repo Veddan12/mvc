@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block body %}
+<h1>Card game</h1>
+
+<p>This is a card game where you can choose to either shuffle them, sort them
+    or draw one or few cards from the deck.</p>
+<ul>
+    <li><a href="{{ path('sorted_deck') }}">Sorted Deck</a></li>
+    <li><a href="{{ path('shuffle_deck') }}">Shuffle Deck</a></li>
+    <li><a href="{{ path('draw_card') }}">Draw a Card</a></li>
+    <li><a href="{{ path('draw_cards', { 'num': 5 }) }}">Draw Cards</a></li>
+</ul>
+<h3>Beskrivning av klasser</h3>
+    <p>
+Card klassen representerar en enskilt spelkort med en svit (hjärter, ruter, klöver, spader) och ett värde (1,2,3,...,kung). Den innehåller privata variabler för sviter och värden samt metoder för att generera en kortlek och blanda kort.
+CardJoker ärver från Card och innehåller en egen variabel (jokrar) som lägger till en möjlighet att inkludera jokrar i en kortlek.
+Deck klassen innehåller en samling av kort, alltså representerar en lek av spelkort bestående av ett antal kort. Den innehåller privata variabler för själva leken av kort och antalet kvarvarande kort i leken. Den har metoder för att konstruera leken med en given uppsättning kort, blanda kortleken, dra ett kort eller flera kort, samt för att returnera antalet kvarvarande kort.
+CardHand representerar en hand med spelkort som en spelare kan ha. Den innehåller en array för att lagra de kort som ingår i handen och har metoder för att lägga till ett kort i handen och för att returnera alla kort i handen.
+    </p>
+<h3>Relationer mellan klasser</h3>
+    <p>
+Card och CardJoker har en generaliseringsrelation, där CardJoker ärver kort från Card och lägger till jokrar.
+Deck har en kompositionsrelation med Card, där Deck har ett antal kort i korleken.
+CardHand har en aggregationssrelation med Card, eftersom en hand kan innehålla flera kort.
+    </p>
+
+<img src="{{ asset('img/CardGame.jpg') }}" alt="Card Game Uml image">
+
+{% endblock %}

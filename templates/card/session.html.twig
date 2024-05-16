@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session Data{% endblock %}
+
+{% block body %}
+    <h1>Session Data</h1>
+
+    <p>Contents of the session:</p>
+
+    <pre>{{ dump(sessionData) }}</pre>
+
+    <p><a href="{{ path('delete_session') }}">Delete Session</a></p>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}

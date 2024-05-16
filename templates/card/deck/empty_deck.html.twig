@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <h1>Card Game</h1>
+    <p>No more cards left in the deck. Reset the session to start a new game.</p>
+    <p><a href="{{ path('delete_session') }}">Reset Session</a></p>
+{% endblock %}

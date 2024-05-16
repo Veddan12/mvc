@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Card Game{% endblock %}
+
+{% block body %}
+    <h1>Draw Card</h1>
+    <p>Drawn Card: {{ drawnCard.value }} of {{ drawnCard.suit }}</p>
+    <div class="deck">
+        <div class="card">
+            <div>{{ drawnCard.value }} {% if drawnCard.suit == 'Hearts' or drawnCard.suit == 'Diamonds' %}<span class="red">{% endif %}{% if drawnCard.suit == 'Hearts' %}&hearts;{% elseif drawnCard.suit == 'Spades' %}&spades;{% elseif drawnCard.suit == 'Diamonds' %}&diams;{% elseif drawnCard.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+        </div>
+    </div>
+    <p>Remaining Cards in the deck: {{ remainingCardsCount }}</p>
+    <div class="deck">
+        {% for card in remainingCards %}
+        <div class="card">
+            <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
