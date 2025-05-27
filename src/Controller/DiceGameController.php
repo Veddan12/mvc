@@ -5,13 +5,12 @@ namespace App\Controller;
 use App\Dice\Dice;
 use App\Dice\DiceGraphic;
 use App\Dice\DiceHand;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Exception;
 
 class DiceGameController extends AbstractController
 {
@@ -38,7 +37,7 @@ class DiceGameController extends AbstractController
     public function testRollDices(int $num): Response
     {
         if ($num > 99) {
-            throw new \Exception("Can not roll more than 99 dices!");
+            throw new Exception("Can not roll more than 99 dices!");
         }
 
         $diceRoll = [];
@@ -61,16 +60,13 @@ class DiceGameController extends AbstractController
     public function testDiceHand(int $num): Response
     {
         if ($num > 99) {
-            throw new \Exception("Can not roll more than 99 dices!");
+            throw new Exception("Can not roll more than 99 dices!");
         }
 
         $hand = new DiceHand();
         for ($i = 1; $i <= $num; $i++) {
-            if ($i % 2 === 1) {
-                $hand->add(new DiceGraphic());
-            } else {
-                $hand->add(new Dice());
-            }
+            $die = ($i % 2 === 1) ? new DiceGraphic() : new Dice();
+            $hand->add($die);
         }
 
         $hand->roll();
@@ -88,15 +84,6 @@ class DiceGameController extends AbstractController
     {
         return $this->render('pig/init.html.twig');
     }
-
-    /*
-    #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
-    public function initCallback(): Response
-    {
-        // Deal with the submitted form
-
-        return $this->redirectToRoute('pig_play');
-    }*/
 
     #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
     public function initCallback(
@@ -119,19 +106,11 @@ class DiceGameController extends AbstractController
         return $this->redirectToRoute('pig_play');
     }
 
-    /*
-    #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
-    public function play(): Response
-    {
-        // Logic to play the game
-
-        return $this->render('pig/play.html.twig');
-    }*/
-
     #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
     public function play(
         SessionInterface $session
     ): Response {
+        /** @var DiceHand $dicehand */
         $dicehand = $session->get("pig_dicehand");
 
         $data = [
@@ -144,23 +123,16 @@ class DiceGameController extends AbstractController
         return $this->render('pig/play.html.twig', $data);
     }
 
-    /*
-    #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
-    public function roll(): Response
-    {
-        // Logic to roll the dice
-
-        return $this->render('pig/play.html.twig');
-    }*/
-
     #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
     public function roll(
         SessionInterface $session
     ): Response {
+        /** @var \App\Dice\DiceHand $hand */
         $hand = $session->get("pig_dicehand");
         $hand->roll();
 
         $roundTotal = $session->get("pig_round");
+        $roundTotal = is_numeric($roundTotal) ? (int) $roundTotal : 0;
         $round = 0;
         $values = $hand->getValues();
         foreach ($values as $value) {
@@ -189,6 +161,9 @@ class DiceGameController extends AbstractController
     ): Response {
         $roundTotal = $session->get("pig_round");
         $gameTotal = $session->get("pig_total");
+
+        $roundTotal = is_numeric($roundTotal) ? (int) $roundTotal : 0;
+        $gameTotal = is_numeric($gameTotal) ? (int) $gameTotal : 0;
 
         $session->set("pig_round", 0);
         $session->set("pig_total", $roundTotal + $gameTotal);
