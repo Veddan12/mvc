@@ -2,9 +2,12 @@
 
 namespace App\Dice;
 
+use LogicException;
+
 class Dice
 {
-    protected $value;
+    /** @var int|null */
+    protected ?int $value = null;
 
     public function __construct()
     {
@@ -17,8 +20,16 @@ class Dice
         return $this->value;
     }
 
+    // public function getValue(): int
+    // {
+    //     return $this->value;
+    // }
     public function getValue(): int
     {
+        if ($this->value === null) {
+            throw new LogicException("Dice has not been rolled yet.");
+        }
+
         return $this->value;
     }
 
