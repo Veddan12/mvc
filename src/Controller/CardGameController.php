@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Card\Card;
+// use App\Card\Card;
 use App\Card\Deck;
-
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,15 +48,10 @@ class CardGameController extends AbstractController
     #[Route("/card", name: "card_start")]
     public function home(SessionInterface $session): Response
     {
-        $card = new Card();
-        $deck = new Deck($card->getDeck());
-        $session->set('deck', $deck->getCards());
-
-        // Retrieve the deck from the session
-        $deck = $session->get('deck');
-
+        $deck = new Deck();
+        $session->set('deck', $deck);
         return $this->render('card/home.html.twig', [
-            'deck' => $deck
+            'deck' => $deck->getCards()
         ]);
     }
 
@@ -66,13 +59,9 @@ class CardGameController extends AbstractController
     public function sorted(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
-        // $deck is an instance of the Deck class
-        if (!$deck instanceof Deck) {
-            // Initialize $deck as an instance of the Deck class
-            $card = new Card();
-            $deck = new Deck($card->getDeck());
 
-            // Store the deck in the session
+        if (!$deck instanceof Deck) {
+            $deck = new Deck();
             $session->set('deck', $deck);
         }
         return $this->render('card/deck/sorted.html.twig', [
@@ -84,13 +73,13 @@ class CardGameController extends AbstractController
     public function shuffle(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
-
-        if ($deck instanceof Deck) {
-            // Shuffle the deck
-            $deck->shuffle();
-
+        if (!$deck instanceof Deck) {
+            $deck = new Deck();
             $session->set('deck', $deck);
         }
+        $deck->shuffle();
+        $session->set('deck', $deck);
+
         return $this->render('card/deck/shuffle.html.twig', [
             'deck' => $deck->getCards()
         ]);
@@ -100,13 +89,12 @@ class CardGameController extends AbstractController
     public function drawCard(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
-
-        // Draw a single card from the deck
+        if (!$deck instanceof Deck) {
+            $deck = new Deck();
+            $session->set('deck', $deck);
+        }
         $drawnCard = $deck->drawCard();
-
-        // If a card drawn successfully
         if ($drawnCard !== null) {
-            // Count the remaining cards in the deck
             $remainingCardsCount = $deck->remainingCards();
 
             $session->set('drawnCard', $drawnCard);
@@ -118,11 +106,10 @@ class CardGameController extends AbstractController
                 'remainingCardsCount' => $remainingCardsCount,
                 'remainingCards' =>  $deck->getCards()
             ]);
-        } else {
-            // If no more cards in the deck
-            // Redirect to empty deck page
-            return $this->redirectToRoute('empty_deck');
         }
+        // If no more cards in the deck
+        // Redirect to empty deck page
+        return $this->redirectToRoute('empty_deck');
     }
 
     #[Route("/card/deck/draw/{num<\d+>}", name: "draw_cards")]
@@ -130,28 +117,33 @@ class CardGameController extends AbstractController
     {
         $deck = $session->get('deck');
 
+        if (!$deck instanceof Deck) {
+            $deck = new Deck();
+            $session->set('deck', $deck);
+        }
         // Draw the specified number of cards from the deck
         $drawnCards = [];
         for ($i = 0; $i < $num; $i++) {
             $drawnCard = $deck->drawCard();
             if ($drawnCard !== null) {
                 $drawnCards[] = $drawnCard;
-            } else {
-                return $this->redirectToRoute('empty_deck');
+                continue;
             }
+            return $this->redirectToRoute('empty_deck');
         }
 
-        // Count of remaining cards
         $remainingCardsCount = $deck->remainingCards();
 
         $session->set('drawnCards', $drawnCards);
         $session->set('remainingCardsCount', $remainingCardsCount);
         $session->set('remainingCards', $deck->getCards());
 
+        $session->set('deck', $deck);
+
         return $this->render('card/deck/draw_few.html.twig', [
             'drawnCards' => $drawnCards,
-            'remainingCards' => $deck->getCards(),
-            'remainingCardsCount' => $remainingCardsCount
+            'remainingCards' =>  $deck->getCards(),
+            'remainingCardsCount' => $deck->remainingCards()
         ]);
     }
 
