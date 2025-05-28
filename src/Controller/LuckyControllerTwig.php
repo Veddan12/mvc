@@ -49,4 +49,11 @@ class LuckyControllerTwig extends AbstractController
     {
         return $this->render('card/home.html.twig');
     }
+
+    #[Route("/game", name: "game")]
+    public function landningpage(): Response
+    {
+        return $this->render('game/home.html.twig');
+    }
+
 }
