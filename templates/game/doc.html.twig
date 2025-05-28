@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game 21{% endblock %}
+
+{% block body %}
+<h1>Dokumentation</h1>
+
+<h3>Klassbeskrivningar</h3>
+    <p>
+Card klass ansvarar för att skapa en standarduppsättning spelkort.
+Den innehåller alla färger  och värden (hearts, diamonds, clubs och spades från ess till kung).
+Kortleken genereras som en array av associerade arrayer som representerar varje enskilt kort.
+Klassen innehåller även funktionen för att returnera en kortlek getDeck().
+    </p>
+Deck klass hanterar själva kortleken under spelets gång. Den ansvarar för att blanda korten slumpmässigt, dra ett eller flera kort, samt hålla koll på hur många kort som återstår. 
+    <p>
+CardHand klass representerar en samling kort, en hand, för antingen spelaren eller banken. Den har metoder för att lägga till kort och hämta hela handen.
+    </p>
+    <p>
+Game21 klass innehåller spelets centrala logik. Den styr spelets gång, låter spelaren och banken dra kort och avgör vinnaren enligt reglerna. Classen använder ett Deck-objekt och två CardHand-objekt: player och bank för att hålla reda på spelets tillstånd.
+    </p>
+
+<h3>Flödesschema</h3>
+
+<img src="{{ asset('img/flodesschema.jpg') }}" alt="Flow chart of the game">
+
+<h3>Pseudokod</h3>
+
+<img src="{{ asset('img/pseudokod.jpg') }}" alt="Pseudokod">
+
+
+{% endblock %}

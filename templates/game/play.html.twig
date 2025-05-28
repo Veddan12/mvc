@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Game 21{% endblock %}
+
+{% block body %}
+    <h1>Game 21</h1>
+
+    {% set playerCards = game.getPlayerHand().getCards() %}
+    <h2>Spelare:
+        {% if playerCards|length > 0 %}
+            {{ game.getPlayerHand().getTotal() }}
+        {% endif %}
+    </h2>
+    <div class="deck">
+    {% for card in game.getPlayerHand().getCards() %}
+        <div class="card">
+            <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+        </div>
+    {% endfor %}
+    </div>
+
+    {% if gameOver %}
+        <h2>Banken: {{ game.getBankHand().getTotal() }}</h2>
+        <div class="deck">
+            {% for card in game.getBankHand().getCards() %}
+                <div class="card">
+                    <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if result %}
+        <h3>Resultat: {{ result }}</h3>
+        <form action="{{ path('game_restart') }}" method="post">
+            <button type="submit">Spela igen</button>
+        </form>
+    {% endif %}
+
+    {% if not gameOver %}
+        <form method="post" action="{{ path('play_game_post') }}">
+            <button type="submit" name="action" value="draw">Dra kort</button>
+            <button type="submit" name="action" value="stay">Stanna</button>
+        </form>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Landing Page{% endblock %}
+
+{% block body %}
+    <h1>Landing Page</h1>
+    <h2>Session Data</h2>
+    <pre>{{ dump(sessionData) }}</pre>
+    <a href="{{ path('delete_session') }}">Delete Session</a>
+{% endblock %}

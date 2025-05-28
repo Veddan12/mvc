@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Game 21{% endblock %}
+
+{% block body %}
+<h1>Game 21</h1>
+
+<p>Spelet “21” är en kortlek, en version av BlackJack.
+Målet är att komma så nära värdet 21 som möjligt utan att överstiga det.
+Det finns två parter: spelare och bank. Spelaren drar kort en i taget och väljer att stanna när som helst.
+När spelaren stannar tar banken över. Banken drar kort tills den har minst 17 poäng. Spelaren vinner om summan är närmare 21 än banken eller om banken överskrider 21.
+Banken vinner om summan är lika eller högre än spelarens eller om spelaren överskrider 21. Notera att Ess räknas som 1 eller 14 beroende på vad som gynnar handen.
+</p>
+
+<form method="get" action="{{ path('play_game') }}">
+    <input type="submit" value="Spela">
+</form>
+
+{% endblock %}
