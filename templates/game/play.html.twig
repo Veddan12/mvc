@@ -5,29 +5,25 @@
 {% block body %}
     <h1>Game 21</h1>
 
-    {% set playerCards = game.getPlayerHand().getCards() %}
-    <h2>Spelare:
-        {% if playerCards|length > 0 %}
-            {{ game.getPlayerHand().getTotal() }}
-        {% endif %}
-    </h2>
+    <h2>Spelare: {{ game.getPlayerHand().getTotal() }}</h2>
     <div class="deck">
-    {% for card in game.getPlayerHand().getCards() %}
-        <div class="card">
-            <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
-        </div>
-    {% endfor %}
+        {% for card in game.getPlayerHand().getCards() %}
+            <div class="card">
+                <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+            </div>
+        {% endfor %}
     </div>
 
     {% if gameOver %}
-        <h2>Banken: {{ game.getBankHand().getTotal() }}</h2>
-        <div class="deck">
-            {% for card in game.getBankHand().getCards() %}
-                <div class="card">
-                    <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
-                </div>
-            {% endfor %}
-        </div>
+    <h2>Banken: {{ game.getBankHand().getTotal() }}</h2>
+        
+    <div class="deck">
+        {% for card in game.getBankHand().getCards() %}
+            <div class="card">
+                <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+            </div>
+        {% endfor %}
+    </div>
     {% endif %}
 
     {% if result %}

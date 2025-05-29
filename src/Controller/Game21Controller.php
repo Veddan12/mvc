@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\Card\Card;
 use App\Card\CardHand;
 use App\Card\Deck;
 use App\Card\Game21;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-// use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,25 +61,26 @@ class Game21Controller extends AbstractController
             throw new RuntimeException("Invalid game instance in session");
         }
 
-        // Player chose to draw or stay
-        if ($request->request->get('action') === 'draw') {
-            // Player draws a card
-            $game->drawForPlayer();
-        } elseif ($request->request->get('action') === 'stay') {
-            // Player stays, start bank turn
-            $game->drawForBank();
-        }
-
-        // If gameOver get the winner
         $gameOver = false;
         $result = '';
-        if ($game->getPlayerHand()->getTotal() > 21) {
-            $result = 'Du har över 21! Banken vinner!';
-            $gameOver = true;
-        } elseif ($game->getBankHand()->getTotal() >= 17 && $game->getBankHand()->getTotal() <= 21) {
+        $action = $request->request->get('action');
+
+        if ($action === 'draw') {
+            $game->drawForPlayer();
+
+            if ($game->getPlayerHand()->getTotal() > 21) {
+                $result = 'Du har över 21! Du förlorade!';
+                $gameOver = true;
+            }
+        }
+
+        if ($action === 'stay' && !$gameOver) {
+            $game->drawForBank();
             $result = $game->compareResults();
             $gameOver = true;
         }
+
+        $session->set('game21', $game);
 
         return $this->render('game/play.html.twig', [
             'game' => $game,
