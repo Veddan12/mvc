@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * Class CardHand represents a hand of cards.
+ */
 class CardHand
 {
     /** @var Card[] */

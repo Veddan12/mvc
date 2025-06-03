@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * Class Card represents a standard playing card with a suit and a value.
+ */
 class Card
 {
     /** @var string */

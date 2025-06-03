@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * Class CardJoker extends the standard Deck by adding two Joker cards.
+ */
 class CardJoker extends Deck
 {
     // private int $jokers = 2;

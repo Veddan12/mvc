@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * Class Game21 is game logic handler.
+ */
 class Game21
 {
     /** @var Deck */

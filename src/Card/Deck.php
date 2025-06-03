@@ -2,6 +2,9 @@
 
 namespace App\Card;
 
+/**
+ * Class Deck represents a standard deck of playing cards.
+ */
 class Deck
 {
     /** @var Card[] */
