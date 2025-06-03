@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Tests\Card;
+
+use PHPUnit\Framework\TestCase;
+use App\Card\Card;
+
+/**
+ * Test cases for class Card.
+ */
+class CardTest extends TestCase
+{
+    public function testCreateCard(): void
+    {
+        $card = new Card('Hearts', 'Ace');
+        $this->assertInstanceOf(Card::class, $card);
+    }
+
+    public function testGetSuire(): void
+    {
+        $card = new Card('Clubs', 'Ace');
+        $this->assertEquals('Clubs', $card->getSuit());
+    }
+
+    public function testGetValue(): void
+    {
+        $card = new Card('Spades', 'Ace');
+        $this->assertEquals('Ace', $card->getValue());
+    }
+
+    public function testNumericValue(): void
+    {
+        $king = new Card('Diamond', 'King');
+        $queen = new Card('Hearts', 'Queen');
+        $jack = new Card('Spades', 'Jack');
+        $ace = new Card('Clubs', 'Ace');
+
+        $card = new Card('Hearts', '9');
+
+        $this->assertEquals(13, $king->getNumericValue());
+        $this->assertEquals(12, $queen->getNumericValue());
+        $this->assertEquals(11, $jack->getNumericValue());
+        $this->assertEquals(1, $ace->getNumericValue());
+
+        $this->assertEquals(9, $card->getNumericValue());
+    }
+
+    public function testToString(): void
+    {
+        $card = new Card('Spades', 'Jack');
+
+        $this->assertEquals('Jack of Spades', (string)$card);
+    }
+
+    public function testToArray(): void
+    {
+        $card = new Card('Hearts', '9');
+        $cardArray = ['value' => '9', 'suit' => 'Hearts'];
+
+        $this->assertEquals($cardArray, $card->toArray());
+    }
+}
