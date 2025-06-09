@@ -396,6 +396,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-LibraryController.html#method_updateBook"
         },                {
+            "fqsen": "\\App\\Controller\\LibraryControllerJson",
+            "name": "LibraryControllerJson",
+            "summary": "",
+            "url": "classes/App-Controller-LibraryControllerJson.html"
+        },                {
+            "fqsen": "\\App\\Controller\\LibraryControllerJson\u003A\u003AapiShowLibrary\u0028\u0029",
+            "name": "apiShowLibrary",
+            "summary": "",
+            "url": "classes/App-Controller-LibraryControllerJson.html#method_apiShowLibrary"
+        },                {
+            "fqsen": "\\App\\Controller\\LibraryControllerJson\u003A\u003AapiShowBookIsbn\u0028\u0029",
+            "name": "apiShowBookIsbn",
+            "summary": "",
+            "url": "classes/App-Controller-LibraryControllerJson.html#method_apiShowBookIsbn"
+        },                {
             "fqsen": "\\App\\Controller\\LuckyController",
             "name": "LuckyController",
             "summary": "",

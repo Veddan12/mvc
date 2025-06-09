@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1749469970">
-  <project timestamp="1749469970">
+<coverage generated="1749478701">
+  <project timestamp="1749478701">
     <file name="/home/veddan/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="22" coveredelements="22"/>
@@ -526,6 +526,30 @@
       <line num="153" type="stmt" count="0"/>
       <metrics loc="156" ncloc="156" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="0" elements="67" coveredelements="0"/>
     </file>
+    <file name="/home/veddan/dbwebb-kurser/mvc/me/report/src/Controller/LibraryControllerJson.php">
+      <class name="App\Controller\LibraryControllerJson" namespace="global">
+        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="18" coveredelements="0"/>
+      </class>
+      <line num="12" type="method" name="apiShowLibrary" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="24" type="method" name="apiShowBookIsbn" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <metrics loc="42" ncloc="42" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="18" coveredelements="0"/>
+    </file>
     <file name="/home/veddan/dbwebb-kurser/mvc/me/report/src/Controller/LuckyController.php">
       <class name="App\Controller\LuckyController" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
@@ -808,6 +832,6 @@
       <line num="54" type="stmt" count="0"/>
       <metrics loc="82" ncloc="45" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="16" coveredelements="0"/>
     </file>
-    <metrics files="24" loc="1848" ncloc="1608" classes="23" methods="112" coveredmethods="28" conditionals="0" coveredconditionals="0" statements="551" coveredstatements="94" elements="663" coveredelements="122"/>
+    <metrics files="25" loc="1890" ncloc="1650" classes="24" methods="114" coveredmethods="28" conditionals="0" coveredconditionals="0" statements="567" coveredstatements="94" elements="681" coveredelements="122"/>
   </project>
 </coverage>
