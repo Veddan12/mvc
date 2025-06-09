@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+    <h1>Confirm Delete</h1>
+    <p>Are you sure you want to delete the book:</p>
+    <ul>
+        <li><strong>Title:</strong> {{ book.title }}</li>
+        <li><strong>Author:</strong> {{ book.author }}</li>
+        <li><strong>ISBN:</strong> {{ book.isbn }}</li>
+    </ul>
+
+    <form method="post" action="{{ path('library_delete_by_id', {'id': book.id}) }}">
+        <button type="submit" style="background-color: red; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
+            Yes, Delete
+        </button>
+        <a href="{{ path('view_library') }}">
+            <button type="button" style="padding: 6px 12px; border-radius: 4px; cursor: pointer;">
+                Cancel
+            </button>
+        </a>
+    </form>
+{% endblock %}

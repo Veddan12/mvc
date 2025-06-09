@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .actions {
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        max-width: 200px;
+    }
+</style>
+<h1>Book info</h1>
+<p><strong>Title:</strong> {{ book.title }}</p>
+<p><strong>Author:</strong> {{ book.author }}</p>
+<p><strong>ISBN:</strong> {{ book.isbn }}</p>
+<img src="{{ asset(book.bookcover) }}" alt="Omslag till {{ book.title }}" style="max-height: 300px;">
+
+<div class="actions">
+    <a href="{{ path('library_delete', { id: book.id }) }}">
+        <button>Delete</button>
+    </a>
+    <a href="{{ path('book_update', { id: book.id }) }}">
+        <button>Update</button>
+    </a>
+    <a href="{{ path('view_library') }}">
+        <button>Back to Library</button>
+    </a>
+</div>
+
+{% endblock %}

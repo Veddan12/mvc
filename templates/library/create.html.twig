@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LibraryController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .bookform {
+        padding: 0.5rem;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Add a new book to the Library</h1>
+    <form action="{{ path('library_create_post') }}" method="POST">
+        <fieldset>
+            <div class="bookform">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="bookform">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+            <div class="bookform">
+                <label for="isbn">ISBN:</label>
+                <input type="text" id="isbn" name="isbn" required>
+            </div>
+            <div class="bookform">
+                <label for="bookcover">Bookcover:</label>
+                <input type="text" id="bookcover" name="bookcover" required>
+            </div>
+            <button type="submit">Add</button>  
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

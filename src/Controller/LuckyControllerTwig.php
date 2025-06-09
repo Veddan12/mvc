@@ -56,4 +56,10 @@ class LuckyControllerTwig extends AbstractController
         return $this->render('game/home.html.twig');
     }
 
+    #[Route("/library", name: "library")]
+    public function bookpage(): Response
+    {
+        return $this->render('library/index.html.twig');
+    }
+
 }
