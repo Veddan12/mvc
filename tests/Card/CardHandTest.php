@@ -11,6 +11,9 @@ use App\Card\Card;
  */
 class CardHandTest extends TestCase
 {
+    /**
+     * Test adding cards to the hand and retrieving them.
+     */
     public function testAddCardAndGetCards(): void
     {
         $cardhand = new CardHand();
@@ -27,6 +30,9 @@ class CardHandTest extends TestCase
         $this->assertCount(2, $cards);
     }
 
+    /**
+     * Test converting the card hand to an array format.
+     */
     public function testToArray(): void
     {
         $cardhand = new CardHand();
@@ -36,6 +42,9 @@ class CardHandTest extends TestCase
         $this->assertEquals(['value' => 'Queen', 'suit' => 'Diamonds'], $handArray[0]);
     }
 
+    /**
+     * Test the total value calculation of a card hand.
+     */
     public function testGetTotal(): void
     {
         $cardhand = new CardHand();
@@ -46,6 +55,9 @@ class CardHandTest extends TestCase
         $this->assertEquals(12 + 5 + 1, $cardhand->getTotal());
     }
 
+    /**
+     * Test total value calculation with two Aces.
+     */
     public function testGetTotalTwoAces(): void
     {
         $cardhand = new CardHand();
@@ -55,6 +67,9 @@ class CardHandTest extends TestCase
         $this->assertEquals(1 + 14, $cardhand->getTotal());
     }
 
+    /**
+     * Test total value calculation with more than two Aces.
+     */
     public function testGetTotalMoreAces(): void
     {
         $cardhand = new CardHand();

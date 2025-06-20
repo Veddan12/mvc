@@ -35,6 +35,9 @@ class DiceTest extends TestCase
         $this->assertTrue($res <= 6);
     }
 
+    /**
+     * Test that getValue returns the same value as returned by roll().
+     */
     public function testGetValueAfterRoll(): void
     {
         $die = new Dice();
@@ -42,6 +45,9 @@ class DiceTest extends TestCase
         $this->assertSame($rolled, $die->getValue());
     }
 
+    /**
+     * Test that getValue throws an exception if the dice has not been rolled yet.
+     */
     public function testGetValueThrowsException(): void
     {
         $die = new Dice();

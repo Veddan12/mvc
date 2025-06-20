@@ -10,6 +10,9 @@ use App\Card\CardJoker;
  */
 class CardJokerTest extends TestCase
 {
+    /**
+     * Test creating an instance of CardJoker.
+     */
     public function testCreateCardJoker(): void
     {
         $deck = new CardJoker();

@@ -13,6 +13,9 @@ use App\Card\Card;
  */
 class Game21Test extends TestCase
 {
+    /**
+     * Test init of the Game21 instance with mock dependencies.
+     */
     public function testGame21Init(): void
     {
         /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\Deck $deck */
@@ -29,6 +32,9 @@ class Game21Test extends TestCase
         $this->assertInstanceOf(Game21::class, $game);
     }
 
+    /**
+     * Test the getters for player and bank hands.
+     */
     public function testGetPlayerHandAndBankHand(): void
     {
         /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\Deck $deck */
@@ -46,6 +52,13 @@ class Game21Test extends TestCase
         $this->assertSame($bankHand, $game->getBankHand());
     }
 
+    /**
+     * Test drawing a card for the player:
+     * - Add the card to player's hand,
+     * - Update total,
+     * - Check if game ends when player > 21,
+     * - Verifies result message.
+     */
     public function testDrawForPlayer(): void
     {
         $card = new Card("Hearts", "7");
@@ -55,41 +68,27 @@ class Game21Test extends TestCase
 
         $deck->method('drawCard')->willReturn($card);
 
-        $playerHand = new CardHand();
+        /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\CardHand $playerHand */
+        $playerHand = $this->createMock(CardHand::class);
+        $playerHand->expects($this->once())->method('addCard')->with($card);
+        $playerHand->method('getTotal')->willReturn(22);
+        $playerHand->method('getCards')->willReturn([$card]);
 
         /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\CardHand $bankHand */
         $bankHand = $this->createMock(CardHand::class);
 
         $game = new Game21($deck, $playerHand, $bankHand);
-
-
         $game->drawForPlayer();
+
         $this->assertCount(1, $game->getPlayerHand()->getCards());
         $this->assertSame($card, $game->getPlayerHand()->getCards()[0]);
+        $this->assertTrue($game->isGameOver());
+        $this->assertSame("Du har över 21! Du förlorade!", $game->getResult());
     }
 
-    public function testDrawForBank(): void
-    {
-        $card = new Card("Diamonds", "Queen");
-
-        /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\Deck $deck */
-        $deck = $this->createMock(Deck::class);
-
-        $deck->method('drawCard')->willReturn($card);
-
-        /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\CardHand $playerHand */
-        $playerHand = $this->createMock(CardHand::class);
-
-        $bankHand = new CardHand();
-
-        $game = new Game21($deck, $playerHand, $bankHand);
-
-        $game->drawForBank();
-
-        $this->assertNotEmpty($game->getBankHand()->getCards());
-        $this->assertGreaterThanOrEqual(17, $game->getBankHand()->getTotal());
-    }
-
+    /**
+     * Test drawing a card for the bank when the deck is empty:
+     */
     public function testDrawForBankBreakIfDeckEmpty(): void
     {
         /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\Deck $deck */
@@ -108,6 +107,30 @@ class Game21Test extends TestCase
         $this->assertCount(0, $bankHand->getCards());
     }
 
+    /**
+     * Test drawing cards for the bank:
+     * - Bank draws cards until 17 points.
+     * - Verify total of bank hand matches expected value.
+     */
+    public function testDrawForBank(): void
+    {
+        /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\Deck $deck */
+        $deck = $this->createMock(Deck::class);
+        $deck->method('drawCard')->willReturnOnConsecutiveCalls(
+            new Card('hearts', '5'),
+            new Card('spades', '6'),
+            new Card('clubs', '6')
+        );
+
+        $game = new Game21($deck, new CardHand(), new CardHand());
+        $game->drawForBank();
+
+        $this->assertSame(17, $game->getBankHand()->getTotal());
+    }
+
+    /**
+     * Test compare game results for different player and bank hand totals.
+     */
     public function testCompareResults(): void
     {
         /** @var \PHPUnit\Framework\MockObject\MockObject&\App\Card\Deck $deck */
