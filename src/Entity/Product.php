@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * The Product class.
+ */
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -19,16 +22,25 @@ class Product
     #[ORM\Column]
     private ?int $value = null;
 
+    /**
+     * Get the id for the product.
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * Get the name for the product.
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-
+    
+    /**
+     * Set the name for the product.
+     */
     public function setName(string $name): static
     {
         $this->name = $name;
@@ -36,11 +48,17 @@ class Product
         return $this;
     }
 
+    /**
+     * Get the value for the product.
+     */
     public function getValue(): ?int
     {
         return $this->value;
     }
 
+    /**
+     * Set the value for the product.
+     */
     public function setValue(int $value): static
     {
         $this->value = $value;

@@ -16,6 +16,12 @@ class Game21
     /** @var CardHand */
     private CardHand $bankHand;
 
+    /** @var bool Flag for whether the game is over. */
+    private bool $gameOver = false;
+
+    /** @var string The result message. */
+    private string $result = '';
+
     /**
      * Game21 constructor.
      *
@@ -26,6 +32,55 @@ class Game21
         $this->deck = $deck;
         $this->playerHand = $playerHand;
         $this->bankHand = $bankHand;
+    }
+
+    /**
+     * Draw a card for player from deck and add it to the player's hand.
+     */
+    public function drawForPlayer(): void
+    {
+        $card = $this->deck->drawCard();
+        if ($card !== null) {
+            $this->playerHand->addCard($card);
+        }
+
+        if ($this->playerHand->getTotal() > 21) {
+            $this->result = "Du har över 21! Du förlorade!";
+            $this->gameOver = true;
+        }
+    }
+
+    /**
+     * Draw a card for bank from deck and add it to the bank's hand.
+     */
+    public function drawForBank(): void
+    {
+        while ($this->bankHand->getTotal() < 17) {
+            $card = $this->deck->drawCard();
+            if ($card === null) {
+                return;
+            }
+            $this->bankHand->addCard($card);
+        }
+        $this->result = $this->compareResults();
+        $this->gameOver = true;
+    }
+
+    public function compareResults(): string
+    {
+        $player = $this->playerHand->getTotal();
+        $bank = $this->bankHand->getTotal();
+
+        if ($player > 21) {
+            return "Du förlorade!";
+        }
+        if ($bank > 21) {
+            return "Du vann!";
+        }
+        if ($bank >= $player) {
+            return "Du förlorade!";
+        }
+        return "Du vann!";
     }
 
     /**
@@ -49,48 +104,22 @@ class Game21
     }
 
     /**
-     * Draw a card for player from deck and add it to the player's hand.
+     * Check if the game is over.
+     *
+     * @return bool True if the game has ended, otherwise false.
      */
-    public function drawForPlayer(): void
+    public function isGameOver(): bool
     {
-        // $this->playerHand->addCard($this->deck->drawCard());
-        $card = $this->deck->drawCard();
-        if ($card !== null) {
-            $this->playerHand->addCard($card);
-        }
+        return $this->gameOver;
     }
 
     /**
-     * Draw a card for bank from deck and add it to the bank's hand.
+     * Get the final or current result message.
+     *
+     * @return string
      */
-    public function drawForBank(): void
+    public function getResult(): string
     {
-        // while ($this->bankHand->getTotal() < 17) {
-        //     $this->bankHand->addCard($this->deck->drawCard());
-        // }
-        while ($this->bankHand->getTotal() < 17) {
-            $card = $this->deck->drawCard();
-            if ($card === null) {
-                break;
-            }
-            $this->bankHand->addCard($card);
-        }
-    }
-
-    public function compareResults(): string
-    {
-        $player = $this->playerHand->getTotal();
-        $bank = $this->bankHand->getTotal();
-
-        if ($player > 21) {
-            return "Du förlorade!";
-        }
-        if ($bank > 21) {
-            return "Du vann!";
-        }
-        if ($bank >= $player) {
-            return "Du förlorade!";
-        }
-        return "Du vann!";
+        return $this->result;
     }
 }

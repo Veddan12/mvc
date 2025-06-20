@@ -6,8 +6,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Controller that provides a random quote as a JSON response.
+ */
 class QuoteControllerJson
 {
+    /**
+     * Returns a JSON response containing a random quote with date and timestamp.
+     *
+     * @return Response A JSON response.
+     */
     #[Route("/api/quote")]
     public function jsonQuote(): Response
     {

@@ -47,12 +47,11 @@ class CardHand
             $sum += 14 + 1;
         } elseif ($numAces === 1) {
             // One Ace — check the current sum
-            $sum += ($sum <= 10) ? 11 : 1;
+            $sum += ($sum + 14 <= 21) ? 14 : 1;
         } elseif ($numAces > 2) {
             // More than 2 Aces — treat one as 14, one as 1, rest as 1
             $sum += 14 + 1 + ($numAces - 2) * 1;
         }
-
         return $sum;
     }
 

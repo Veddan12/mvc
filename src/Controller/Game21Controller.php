@@ -12,20 +12,41 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Yaml\Exception\RuntimeException;
 
+/**
+ * Controller to handle Game21 logic.
+ */
 class Game21Controller extends AbstractController
 {
+    /**
+     * Landing page of the game.
+     * 
+     * @return Response Renders the home page Twig template.
+     */
     #[Route("/game", name: "init_page")]
     public function landingPage(): Response
     {
         return $this->render('game/home.html.twig');
     }
 
+    /**
+     * Documentation page for the game.
+     * 
+     * @return Response Renders the documentation Twig template.
+     */
     #[Route("/game/doc", name: "documentation")]
     public function doc(): Response
     {
         return $this->render('game/doc.html.twig');
     }
 
+    /**
+     * Handles the display of the game play page.
+     * 
+     * @param SessionInterface $session Session to store game state.
+     * 
+     * @return Response Renders the game play Twig template.
+     * @throws RuntimeException if the stored session game object is invalid.
+     */
     #[Route("/game/play", name: "play_game", methods: ["GET"])]
     public function play(SessionInterface $session): Response
     {
@@ -39,8 +60,10 @@ class Game21Controller extends AbstractController
             $session->set('game21', $game);
         }
 
+        // Retrieve game object from session
         $game = $session->get('game21');
 
+        // Validate the object type
         if (!$game instanceof Game21) {
             throw new RuntimeException("Invalid game instance in session");
         }
@@ -52,6 +75,14 @@ class Game21Controller extends AbstractController
         ]);
     }
 
+    /**
+     * Handles the game play.
+     * 
+     * @param SessionInterface $session Session to store game state.
+     * 
+     * @return Response Renders the game play Twig template.
+     * @throws RuntimeException if the stored session game object is invalid.
+     */
     #[Route("/game/play", name: "play_game_post", methods: ["POST"])]
     public function handlePlayer(SessionInterface $session, Request $request): Response
     {
@@ -61,34 +92,34 @@ class Game21Controller extends AbstractController
             throw new RuntimeException("Invalid game instance in session");
         }
 
-        $gameOver = false;
-        $result = '';
+        // Get the action by the player (draw or stay)
         $action = $request->request->get('action');
 
-        if ($action === 'draw') {
-            $game->drawForPlayer();
-
-            if ($game->getPlayerHand()->getTotal() > 21) {
-                $result = 'Du har över 21! Du förlorade!';
-                $gameOver = true;
+        // Process player action
+        if (!$game->isGameOver()) {
+            if ($action === 'draw') {
+                $game->drawForPlayer();
+            } elseif ($action === 'stay') {
+                $game->drawForBank();
             }
-        }
-
-        if ($action === 'stay' && !$gameOver) {
-            $game->drawForBank();
-            $result = $game->compareResults();
-            $gameOver = true;
         }
 
         $session->set('game21', $game);
 
         return $this->render('game/play.html.twig', [
             'game' => $game,
-            'gameOver' => $gameOver,
-            'result' => $result,
+            'gameOver' => $game->isGameOver(),
+            'result' => $game->getResult(),
         ]);
     }
 
+    /**
+     * Restart the game route.
+     * 
+     * @param SessionInterface $session Session to store game state.
+     * 
+     * @return Response Redirects to the game play route.
+     */
     #[Route("/game/restart", name: "game_restart")]
     public function restart(SessionInterface $session): Response
     {

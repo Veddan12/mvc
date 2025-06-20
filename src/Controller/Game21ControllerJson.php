@@ -9,8 +9,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * API Controller for Game21.
+ */
 class Game21ControllerJson extends AbstractController
 {
+    /**
+     * Returns the current state of the Game21 session.
+     *
+     * @param SessionInterface $session
+     * @return JsonResponse The game state.
+     */
     #[Route("/api/game", name: "api_game21", methods: ["GET"])]
     public function apiGame21(SessionInterface $session): Response
     {
@@ -24,7 +33,6 @@ class Game21ControllerJson extends AbstractController
 
         $playerHand = $game->getPlayerhand();
         $bankHand = $game->getBankHand();
-
 
         $data = [
             'player' => $playerHand->toArray(),

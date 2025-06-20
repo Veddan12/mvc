@@ -7,10 +7,15 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository class for managing Library entities.
+ * 
  * @extends ServiceEntityRepository<Library>
  */
 class LibraryRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructor to bind this repository to the Library entity.
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Library::class);

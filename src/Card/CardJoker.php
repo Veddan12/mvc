@@ -7,22 +7,10 @@ namespace App\Card;
  */
 class CardJoker extends Deck
 {
-    // private int $jokers = 2;
-
-    // /**
-    //  * @return array<int, array{ suit: string, value: string }>
-    // */
-    // public function getCardsAsArray(): array
-    // {
-    //     $deck = parent::getCardsAsArray(); // Get the standard deck of cards
-
-    //     // Add jokers to the deck
-    //     for ($i = 0; $i < $this->jokers; $i++) {
-    //         $deck[] = ['suit' => '🂿', 'value' => 'Joker'];
-    //     }
-
-    //     return $deck;
-    // }
+    /**
+     * CardJoker constructor.
+     * Add Jokers to the deck.
+     */
     public function __construct()
     {
         parent::__construct();

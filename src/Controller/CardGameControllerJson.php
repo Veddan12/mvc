@@ -10,36 +10,35 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * Controller Card Game JSON API.
+ */
 class CardGameControllerJson extends AbstractController
 {
+    /**
+     * Get the current deck of cards as a JSON response.
+     *
+     * @param SessionInterface $session
+     * @return JsonResponse JSON array representation of the deck.
+     */
     #[Route("/api/deck", name: "api_sorted", methods: ["GET"])]
     public function getDeck(SessionInterface $session): JsonResponse
     {
-        // Retrieve the deck from the session
-        $deck = $session->get('deck');
+        $deck = $this->getOrInitDeck($session);
 
-        // $deck is an instance of the CardJoker class
-        if (!$deck instanceof CardJoker) {
-            // Initialize $deck as an instance of the CardJoker class
-            $deck = new CardJoker(); // Use CardJoker instead of Card
-
-            // Store the initialized deck in the session
-            $session->set('deck', $deck);
-        }
-        // Return the deck as a JSON response
-        // return new JsonResponse($deck->getDeck());
         return new JsonResponse($deck->getCardsAsArray());
     }
 
+    /**
+     * Shuffle the deck and update the session.
+     *
+     * @param SessionInterface $session
+     * @return JsonResponse JSON array representation of the shuffled deck.
+     */
     #[Route("/api/deck/shuffle", name: "api_shuffle", methods: ["POST"])]
     public function shuffleDeck(SessionInterface $session): JsonResponse
     {
-        $deck = $session->get('deck');
-
-        if (!$deck instanceof Deck) {
-            $deck = new CardJoker();
-            $session->set('deck', $deck);
-        }
+        $deck = $this->getOrInitDeck($session);
 
         $deck->shuffle();
 
@@ -48,15 +47,16 @@ class CardGameControllerJson extends AbstractController
         return new JsonResponse($deck->getCardsAsArray());
     }
 
+    /**
+     * Draw a single card from the deck.
+     *
+     * @param SessionInterface $session
+     * @return JsonResponse JSON with drawn card, remaining cards count, and deck array.
+     */
     #[Route("/api/deck/draw", name: "api_draw_card", methods: ["POST"])]
     public function drawCard(SessionInterface $session): JsonResponse
     {
-        $deck = $session->get('deck');
-
-        if (!$deck instanceof Deck) {
-            $deck = new CardJoker();
-            $session->set('deck', $deck);
-        }
+        $deck = $this->getOrInitDeck($session);
 
         $drawnCard = $deck->drawCard();
 
@@ -76,15 +76,17 @@ class CardGameControllerJson extends AbstractController
         ]);
     }
 
+    /**
+     * Draw multiple cards from the deck.
+     *
+     * @param int $number Number of cards to draw.
+     * @param SessionInterface $session
+     * @return JsonResponse JSON with drawn cards array, remaining cards count, and deck array.
+     */
     #[Route("/api/deck/draw/{number}", name: "api_draw_cards", methods: ["POST"])]
     public function drawMoreCards(int $number, SessionInterface $session): JsonResponse
     {
-        $deck = $session->get('deck');
-
-        if (!$deck instanceof Deck) {
-            $deck = new CardJoker();
-            $session->set('deck', $deck);
-        }
+        $deck = $this->getOrInitDeck($session);
 
         $drawnCards = $deck->drawMoreCards($number);
 
@@ -102,5 +104,16 @@ class CardGameControllerJson extends AbstractController
             'remainingCardsCount' => $remainingCardsCount,
             'deck' => $deck->getCardsAsArray()
         ]);
+    }
+
+    /** Helper method to get or init the deck */
+    private function getOrInitDeck(SessionInterface $session): CardJoker
+    {
+        $deck = $session->get('deck');
+        if (!$deck instanceof CardJoker) {
+            $deck = new CardJoker();
+            $session->set('deck', $deck);
+        }
+        return $deck;
     }
 }

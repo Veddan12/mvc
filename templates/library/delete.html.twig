@@ -15,7 +15,7 @@
         <li><strong>ISBN:</strong> {{ book.isbn }}</li>
     </ul>
 
-    <form method="post" action="{{ path('library_delete_by_id', {'id': book.id}) }}">
+    <form method="post" action="{{ path('library_delete', {'id': book.id}) }}">
         <button type="submit" style="background-color: red; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
             Yes, Delete
         </button>

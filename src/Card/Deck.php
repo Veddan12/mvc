@@ -9,12 +9,10 @@ class Deck
 {
     /** @var Card[] */
     protected array $cards;
-    // private int $remainingCards;
 
     public function __construct()
     {
         $this->cards = [];
-        // $this->remainingCards = 0;
 
         $suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
         $values = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
@@ -25,8 +23,6 @@ class Deck
                 $this->cards[] = new Card($suit, $value);
             }
         }
-
-        // $this->remainingCards = count($this->cards);
     }
 
     /**
@@ -49,10 +45,6 @@ class Deck
      */
     public function drawCard(): ?Card
     {
-
-        // if ($this->remainingCards <= 0) {
-        //     return null;
-        // }
         if (count($this->cards) <= 0) {
             return null;
         }
@@ -62,7 +54,6 @@ class Deck
 
         // Remove the drawn card from the deck
         array_splice($this->cards, $randomIndex, 1);
-        // $this->remainingCards--;
         return $drawnCard;
     }
 
@@ -88,7 +79,6 @@ class Deck
 
     public function remainingCards(): int
     {
-        // return $this->remainingCards;
         return count($this->cards);
     }
 
