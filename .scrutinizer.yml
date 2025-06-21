@@ -17,16 +17,17 @@ build:
                     # version: 8.2.4
                     ini:
                         memory_limit: 512M
-            tests:
-                override:
-                    -   command: "php -d memory_limit=512M -d xdebug.mode=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
-                        # - command: "composer phpunit"
-                        # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
-                        coverage:
-                            file: "docs/coverage.clover"
-                            format: "php-clover"
-    analysis:
-            tests:
-                override:
-                    - php-scrutinizer-run
-                    #- phpcs-run # Not used, missing config file
+            analysis:
+                tests:
+                    override:
+                        - php-scrutinizer-run
+                        #- phpcs-run # Not used, missing config file
+    tests:
+        override:
+            -   command: "php -d memory_limit=512M -d xdebug.mode=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
+                # - command: "composer phpunit"
+                # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
+                coverage:
+                    file: "docs/coverage.clover"
+                    format: "php-clover"
+
