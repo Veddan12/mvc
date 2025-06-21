@@ -15,8 +15,6 @@ build:
                     # version: 8.1.13
                     # version: 8.1.17
                     # version: 8.2.4
-                    ini:
-                        memory_limit: 1G
         analysis:
             tests:
                 override:
@@ -24,8 +22,8 @@ build:
                     #- phpcs-run # Not used, missing config file
     tests:
         override:
-            -   command: "php -d memory_limit=512M -d xdebug.mode=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
-                # - command: "composer phpunit"
+            # -   command: "php -d memory_limit=1G -d xdebug.mode=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
+            -   command: "composer phpunit"
                 # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
                 coverage:
                     file: "docs/coverage.clover"
