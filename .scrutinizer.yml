@@ -15,14 +15,13 @@ build:
                     # version: 8.1.13
                     # version: 8.1.17
                     # version: 8.2.4
+            commands:
+                - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+                - sudo apt-get install -y nodejs
+                - cd /home/scrutinizer
+                - npm install
+                - npm run build
         analysis:
-            environment:
-                node:
-                    version: "20"
-            dependencies:
-                    override:
-                        - npm install
-                        - npm run build
             tests:
                 override:
                     - php-scrutinizer-run
