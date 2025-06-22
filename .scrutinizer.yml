@@ -16,8 +16,8 @@ build:
                     # version: 8.1.17
                     # version: 8.2.4
             commands:
-                - npm install
-                - npm run build
+                - cd report && npm install
+                - cd report && npm run build
         analysis:
             tests:
                 override:
