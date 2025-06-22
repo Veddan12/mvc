@@ -6,11 +6,6 @@ filter:
 
 build:
     image: default-bionic
-    commands:
-        - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-        - apt-get install -y nodejs
-        - npm install
-        - npm run build
 
     nodes:
         my-tests:
@@ -20,6 +15,11 @@ build:
                     # version: 8.1.13
                     # version: 8.1.17
                     # version: 8.2.4
+            commands:
+                - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+                - apt-get install -y nodejs
+                - npm install
+                - npm run build
         analysis:
             tests:
                 override:
