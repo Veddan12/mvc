@@ -16,7 +16,6 @@ build:
                     # version: 8.1.17
                     # version: 8.2.4
             commands:
-                - cd mvc/me/report
                 - npm install
                 - npm run build
         analysis:
