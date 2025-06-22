@@ -17,7 +17,7 @@ build:
                     # version: 8.2.4
             commands:
                 - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-                - apt-get install -y nodejs
+                - sudo apt-get install -y nodejs
                 - npm install
                 - npm run build
         analysis:
