@@ -1,0 +1,130 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <style>
+    .metrics-table {
+        width: 90%;
+        margin: 1em auto;
+        font-size: 1.2rem;
+    }
+    .metrics-table th, .metrics-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        vertical-align: middle;
+        text-align: left;
+    }
+    </style>
+    <div class="title">
+        <h1>Metrics</h1>   
+    </div>
+    <div>
+        <h2>Introduktion</h2>
+        <p>I denna rapport kommer vi analysera kodkvalitet med hjälp av PHP-metrics och Scrutinizer. Vi utgår ifrån olika mätvärde för att utvärdera och bedöma kodkvalitet på olika sätt. Detta hjälper oss att kunna förstå koden, hitta förbättringsutrymme och vidareutveckla. Till detta använder vi de 6/7 C:na:</p>
+        <p><strong>Codestyle:</strong> innebär att man ska följa en god kodstandard och praxis, en kodstil som är lättläst och bra dokumenterad. För att upprätthålla en god kvalitet kan man ta hjälp av linters av olika slag. Ett exempel som vi använde i denna kurs är phpmd som kontrollerar koden för möjliga buggar, onödigt komplicerade delar eller t.o.m. oanvända parametrar och metoder.</p>
+        <p><strong>Coverage:</strong> ett mått på hur väl koden är testad. Man utvärderar sin kod, att den gör det som är tänkt och att buggar som kan finnas upptäcks och elimineras. Har man bra utformade enhetstester som täcker en stor del av koden, alltså en hög täckning, som är att eftersträva, så minskar man risken för buggar och oväntade fel.</p>
+        <p><strong>Complexity:</strong> avser kodens komplexitet, ett mått för kodens svårighetsgrad. Är den hög så kanske man har många if-satser och djupa konstruktioner och logik som är svår att testa. Då kan man försöka att bryta ner delar av logiken i egna, mindre funktioner som är lättare att felsöka och underhålla.</p>
+        <p><strong>Cohesion:</strong> talar om hur väl funktioner inom en klass hänger ihop och fungerar som en egen enhet. Hög kohesion tyder på väl sammanhållen klass som har ett tydligt, avgränsat ansvarsområde. Däremot låg kohesion signalerar att man behöver refaktorera koden och lyfta ut delar av logiken i separata klasser.</p>
+        <p><strong>Coupling:</strong> visar hur beroende en klass är av andra klasser. En låg koppling är önskvärt, då det tillåter en större grad av oberoende, vilket betyder att om man gör ändringar i en modul kommer det inte påverka andra moduler, och därav har man en kod som är lättare att underhålla.</p>
+        <p><strong>CRAP (Change Risk Analyzer and Predictor):</strong> en kombinerad mätning av komplexitet och bristande testtäckning som används för att identifiera kodområde som har stor risk för buggar. Ett högt värde betyder en hög risk, alltså visar det att koden är både komplex och dåligt testat, så därför är ett lågt värde av crap att eftersträva.</p>
+        <p><strong>Code smell:</strong> en indikation på att något i koden kan vara fel eller kan orsaka problem. Det pekar på dåliga implementeringar som gör koden svårare att underhålla och vidareutveckla. Det kan vara för stora kodblock eller funktioner med för många parametrar.</p>
+    </div>
+    <div>
+        <h2>Phpmetrics</h2>
+        <p>PHPMetrics är ett verktyg som undersöker koden med avseende på en mängd olika mättal. En sammanfattning kan man tycka ges i bilden nedan där vi har olika stora cirklar i olika färger. Dessa cirklar representerar ett modul där storleken på cirkeln motsvarar modulens cyklomatiska komplexitet och färgen maintainability index. Cyklomatiska komplexitet vill man sträva efter att ha under tio och maintainability index över 85%.</p>
+        <img src="{{ asset('img/phpmetrics_circles.png') }}" alt="metrics circles" style="max-height: 300px;">
+        <p>Utifrån analysen kan vi se att det finns komplexa och svårunderhållna klasser, de stora röda och gula cirklar, framför allt i controllers: CardGameController, Game21Controller och DiceGameController, samt klasserna CardHand, Deck och Game21.</p>
+        <table class="metrics-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Cyclomatic Complexity</th>
+                <th>Maintainability Index</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>CardGameController</td>
+                <td>8</td>
+                <td>63.12</td>
+            </tr>
+            <tr>
+                <td>Game21Controller</td>
+                <td>8</td>
+                <td>64.20</td>
+            </tr>
+            <tr>
+                <td>DiceGameController</td>
+                <td>12</td>
+                <td>57.34</td>
+            </tr>
+        </tbody>
+        </table>
+        <p>Enbart 6 test suites (25 klasser) med 47 antal av assertions. Den låga testtäckningen betyder högre risk, och detta avser också framför allt controllers. Andra parametrar är bland annat hur många logiska kodrader det finns (LLOC), volym på kodbasen, hur väl dokumenterad koden är, potentiella buggar per klass m.m.</p>
+        <img src="{{ asset('img/metrics.png') }}" alt="metrics list" style="max-height: 300px;">
+        <p>Här tittar vi på LLOC, Volume och Comment Weight. I exempelvis DiceGameController har vi en LLOC på 97 och ett högt volym vilket är den mest komplexa klassen i rapporten. Även om dessa värden är okej, kan man överväga att bryta ner det i mindre metoder. Game21Controller och Game21ControllerJson har låga siffror på Comment Weight. Där behöver man lägga till kommentarer för att öka förståelsen och underlätta utvecklingen.</p>
+        <p><p>Sammanfattningsvis visar analysen att fokus bör ligga på att refaktorisera komplexa klasser, förbättra testtäckningen samt öka mängden och kvaliteten på kodkommentarer.</p>
+    </div>
+    <div>
+        <h2>Scrutinizer</h2>
+        <img src="{{ asset('img/badges.png') }}" alt="Scrutinizer bagdes" style="max-height: 400px;">
+        <table>
+        <tbody>
+            <tr>
+                <td>
+                    <a href="https://scrutinizer-ci.com/g/Veddan12/mvc/?branch=main" target="_blank">
+                        <img src="https://scrutinizer-ci.com/g/Veddan12/mvc/badges/quality-score.png?b=main" alt="Scrutinizer Quality Score">
+                    </a>
+                </td>
+                <td>
+                    <a href="https://scrutinizer-ci.com/g/Veddan12/mvc/?branch=main" target="_blank">
+                        <img src="https://scrutinizer-ci.com/g/Veddan12/mvc/badges/coverage.png?b=main" alt="Code Coverage">
+                    </a>
+                </td>
+                <td>
+                    <a href="https://scrutinizer-ci.com/g/Veddan12/mvc/?branch=main" target="_blank">
+                        <img src="https://scrutinizer-ci.com/g/Veddan12/mvc/badges/build.png?b=main" alt="Build Status">
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+        <p>Scrutinizer utför någon liknande analys av koden som PHPMetrics men något begränsat. Den utgår från Github repo och där får man en Quality Score upp till 10 poäng, procentuell bedömning på coverage och om build har passerat eller ej. Min första analys visar 9.94 poäng vilket bedöms vara “very good”. Däremot är coverage endast 18%. Den låga testningen sågs även med PHPMetrics. Alla klasser har fått betyg “A”, och 2 av metoder/funktioner har fått betyg "B". Det är: App\Card\CardHand::getTotal() främst på grund av relativt hög komplexitet för en sådan liten metod och Game21Controller::handlePlayer() som har rimlig storlek och komplexitet men den har höga CRAP-värdet (42) som tyder på avsaknad av tester och en ökad risk för fel vid framtida förändringar.</p>
+        <img src="{{ asset('img/operations_scrutinizer.png') }}" alt="Scrutinizer operations score" style="max-height: 400px; max-width: 600px;">
+        <p>Kortfattat så bekräftar Scrutinizer, som en komplettering till PHPMetrics, att det finns förbättringspotential i testtäckningen. Framför allt bör fokus ligga på att skriva tester för metoder med höga CRAP-värden och att refaktorisera komplexa metoder till mindre delar där det är möjligt.</p>
+    </div>
+    <div>
+        <h2>Förbättringar</h2>
+        <p>Efter analys med PHPMetrics och Scrutinizer har jag identifierat ett par förbättringar som jag kommer att fokusera på för att få bättre kodkvalitet och få bättre resultat i återkörning av de metrics analyserna.</p>
+        <ul>
+            <li>1. Öka testtäckningen - Coverage</li>
+        </ul>
+        <p>Jag planerar att skriva enhetstester för klasser och metoder som i nuläget saknar testning. Både PHPMetrics och Scrutinizer visar på låg täckningsgrad och detta ökar risken för oupptäckta fel, speciellt där det även finns hög komplexitet. En ökad testning kommer att förbättra täckningen, sänka CRAP-värdena och minska risken för fel.</p>
+        <ul>
+            <li>2. Minska komplexiteten i vissa metoder</li>
+        </ul>
+        <p>Jag kommer att refaktorisera först och främst controllers: CardGameController, Game21Controller och DiceGameController, samt se över klasserna CardHand, Deck och Game21 som är de stora röda cirklar som PHPMetrics varnar har för stor cyclomatisk komplexitet och låg maintainability index. En särskild hänsyn kommer att vara på metoderna CardHand::getTotal() och Game21Controller::handlePlayer() som båda fått betyg “B” i Scrutinizer. Genom att bryta ned dessa i mindre delar ökar läsbarheten och testbarheten. Lägre komplexitet kommer allmänt att förbättra kodkvalitet.</p>
+        <ul>
+            <li>3. Kommentera och dokumentera där det behövs</li>
+        </ul>
+        <p>Jag ska lägga till vettiga kommentarer och PHPDoc på metoder och klasser som är nu dåligt kommenterade. Framför allt gäller det Game21Controller och Game21ControllerJson som har låga siffror på Comment Weight i förhållande till kodvolym. Ökad dokumentation kommer att höja mainainability index och bidra till bättre värden i Scrutinizer.</p>
+    </div>
+    <div>
+        <h2>Resultat</h2>
+        <p>Resultatet efter en omfattande bearbetning syns tydligt i PHP-metrics indikatorer där vi nu kan observera en avsaknad av stora röda cirklar. Även antal gula cirklar minskade. Samtliga klasser har över 80 i maintainability index och under 10 i cyclomatisk komplexitet, med undantag för DiceGameController. Denna ligger nu på 74.88 jämfört med tidigare 57.34 och en oförändrad cyclomatisk komplexitet på 12. Under refaktorerings fasen har jag lyckats få DiceGameController till en cyclomatisk komplexitet på 10, men i den versionen har php linters klagat, så där var det att överväga vad man ska satsa på. Vi ser en förbättring i Game21Controller, där en refaktorering gav minskad cyclomatisk komplexitet (8 -> 7) och ökad maintainability index (64.20 -> 87.18), samtidigt som handlePlayer() funktionen har fått betyg A (tidigare B) i Scrutinizer analys och har nu ett minskat CRAP värde från 42 till 30. En rejäl förbättring syns också i CardGameController som ligger på 5 i cyclomatisk komplexitet (tidigare 8) och maintainability index på 80.97 (tidigare 63.12). Överlagda betyget i Scrutinizer har gått från 9.94 till 9.98. Det sista 0.02 som saknas till 10 är nog CardHand::getTotal() funktion som fortfarande har betyg B. Denna har relativt hög komplexitet i relation till storleken, men just för en sådan viktigt funktionalitet var det svårt att ändra utan att få behålla logiken.</p>
+        <img src="{{ asset('img/phpmetrics_after.png') }}" alt="metrics circles" style="max-height: 300px;">
+        <img src="{{ asset('img/scrutinizer-after.png') }}" alt="Scrutinizer operations score after" style="max-height: 400px; max-width: 600px;">
+        <img src="{{ asset('img/operations_after.png') }}" alt="Scrutinizer operations score" style="max-height: 400px; max-width: 600px;">
+        <p>När det gäller coverage, är siffrorna mycket bättre nu, efter ett försök att testa så många klasser som möjligt, givet tiden och kunskapen. PHPmetrics visar att det nu finns 24 test suites, jämfört med tidigare 6 och att det är 198 assertions (tidigare 47). Scrutinizer visar en coverage siffra på 83.2%. Det finns 525 täckta kodrader av totalt 631.</p>
+        <img src="{{ asset('img/coverage.png') }}" alt="Scrutinizer operations score after" style="max-height: 400px; max-width: 600px;">
+        <p>PHPDoc har lagts på samtliga metoder och klasser och även övriga kodkommentarer där det behövdes. Detta har gjort att de tidigare låga siffror på Comment Weight i förhållande till kodvolymen har ökat samt att själva maintainability indexet har ökat.</p>
+        <img src="{{ asset('img/metrics_after.png') }}" alt="metrics list" style="max-height: 300px;">
+    </div>
+    <div>
+        <h2>Diskussion</h2>
+        <p>Koden har nu blivit lite bättre, det lyser mycket bättre här och där och det har varit lärorikt att implementera de här förändringarna. Det är bra att ha vissa “mått”, som 6/7 C är, att förhålla sig till då det är viktigt att upprätthålla en etablerad kodstandard när man samarbetar med andra. Mätvärden som komplexitet eller testtäckning ger konkreta indikatorer på var koden är svår att förstå, testa eller underhålla. Dessa värden hjälper till att förstå att man kanske kan refaktorera vissa delar, testa funktionaliteten och öka underhållbarheten. En clean code gör det lätt för mig och andra att vidareutveckla i framtiden, att förstå vad som händer. Det man ska tänka på är att ha det i åtanke från allra första början. Det är bra praxis att tänka på kodtestning, kodkommentarer och komplexitet. Att man från början modulerar, samt testar del för del, under tiden man utvecklar huvudfunktionerna.</p>
+        <p>Någon konkret nackdel finns inte, men man kan tänka sig att man inte ska nödvändigtvis fokusera sig på siffror allt för mycket. Vissa if-satser, for-loppar kan man inte undgå från, vissa mer komplexa funktioner får vara det för att ha kvar sin logik. Man ska inte optimera koden bara för att snygga till siffror, samtidigt som bra mätvärden betyder inte automatiskt att koden är väldesignat. Samma sak med testningen, vilken slags och hur bra testning har man? Är målet att ha 100% då det kräver mycket tid, eller bättre att fokusera på vad som testas och hur väl det testas. Det är något jag personligen har reflekterat mycket över, just för att det  fortfarande finns så mycket att lära sig om testningen och jag har själv upplevt att det är mycket svårt och krävande att kunna testa på rätt sätt.</p>
+        <p>Att använda sig av PHPmetrics och Scrutinizer ger en tydlig struktur för att jobba med “clean code”. Andra sätt kan kanske vara att ha kod granskning av sina kollegor, att de ger feedback och testar koden. Annars är just de olika automatiserade linters i den lokala miljön ett ganska bra sätt att fånga misstag och “tvingas” hålla goda vanor vid kodskrivning.</p>
+    </div>
+{% endblock %}
