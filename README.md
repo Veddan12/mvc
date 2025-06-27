@@ -2,6 +2,14 @@
 
 ## INTRO TO MVC-COURSE
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Veddan12/mvc/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Veddan12/mvc/?branch=main)
+
+[![Code Coverage](https://scrutinizer-ci.com/g/Veddan12/mvc/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Veddan12/mvc/?branch=main)
+
+[![Build Status](https://scrutinizer-ci.com/g/Veddan12/mvc/badges/build.png?b=main)](https://scrutinizer-ci.com/g/Veddan12/mvc/build-status/main)
+
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/Veddan12/mvc/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
+
 This repository is for course Objektorienterade webbteknologier at BTH. Read the documentation below to see how to get started with necessary installments needed to clone the repo and begin with webb application.
 
 ## CLONE REPO
