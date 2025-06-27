@@ -29,7 +29,7 @@ class Product
     {
         return $this->id;
     }
-    
+
     /**
      * Get the name for the product.
      */
@@ -37,7 +37,7 @@ class Product
     {
         return $this->name;
     }
-    
+
     /**
      * Set the name for the product.
      */

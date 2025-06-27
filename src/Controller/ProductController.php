@@ -15,9 +15,9 @@ use Symfony\Component\Routing\Attribute\Route;
  */
 final class ProductController extends AbstractController
 {
-     /**
-     * Renders the product index page.
-     */
+    /**
+    * Renders the product index page.
+    */
     #[Route('/product', name: 'app_product')]
     public function index(): Response
     {
@@ -99,12 +99,12 @@ final class ProductController extends AbstractController
         return $this->redirectToRoute('product_show_all');
     }
 
-     /**
-     * Updates the value of a product by ID.
-     *
-     * @param int $id The ID of the product to update.
-     * @param int $value The new value to assign.
-     */
+    /**
+    * Updates the value of a product by ID.
+    *
+    * @param int $id The ID of the product to update.
+    * @param int $value The new value to assign.
+    */
     #[Route('/product/update/{id}/{value}', name: 'product_update')]
     public function updateProduct(
         ManagerRegistry $doctrine,
@@ -140,7 +140,7 @@ final class ProductController extends AbstractController
         return $this->render('product/view.html.twig', $data);
     }
 
-    
+
     /**
      * Renders products with value greater than or equal to a given minimum.
      *

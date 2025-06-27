@@ -90,7 +90,7 @@ class LibraryControllerTest extends WebTestCase
     {
         $client = $this->getMockedClient();
         $client->request('GET', '/library/delete/1');
-        
+
         $this->assertResponseIsSuccessful();
     }
 
@@ -98,7 +98,7 @@ class LibraryControllerTest extends WebTestCase
      * Test non-existent book ID gives 404 error.
      */
     public function testGetBookNotFound(): void
-    {   
+    {
         $client = static::createClient();
 
         $mockRepo = $this->createMock(LibraryRepository::class);

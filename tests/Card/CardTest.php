@@ -10,9 +10,9 @@ use App\Card\Card;
  */
 class CardTest extends TestCase
 {
-     /**
-     * Test creating an instance of Card.
-     */
+    /**
+    * Test creating an instance of Card.
+    */
     public function testCreateCard(): void
     {
         $card = new Card('Hearts', 'Ace');

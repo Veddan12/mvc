@@ -8,7 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Repository class for managing Library entities.
- * 
+ *
  * @extends ServiceEntityRepository<Library>
  */
 class LibraryRepository extends ServiceEntityRepository

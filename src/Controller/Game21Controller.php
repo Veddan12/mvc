@@ -19,7 +19,7 @@ class Game21Controller extends AbstractController
 {
     /**
      * Landing page of the game.
-     * 
+     *
      * @return Response Renders the home page Twig template.
      */
     #[Route("/game", name: "init_page")]
@@ -30,7 +30,7 @@ class Game21Controller extends AbstractController
 
     /**
      * Documentation page for the game.
-     * 
+     *
      * @return Response Renders the documentation Twig template.
      */
     #[Route("/game/doc", name: "documentation")]
@@ -41,9 +41,9 @@ class Game21Controller extends AbstractController
 
     /**
      * Handles the display of the game play page.
-     * 
+     *
      * @param SessionInterface $session Session to store game state.
-     * 
+     *
      * @return Response Renders the game play Twig template.
      * @throws RuntimeException if the stored session game object is invalid.
      */
@@ -77,9 +77,9 @@ class Game21Controller extends AbstractController
 
     /**
      * Handles the game play.
-     * 
+     *
      * @param SessionInterface $session Session to store game state.
-     * 
+     *
      * @return Response Renders the game play Twig template.
      * @throws RuntimeException if the stored session game object is invalid.
      */
@@ -115,9 +115,9 @@ class Game21Controller extends AbstractController
 
     /**
      * Restart the game route.
-     * 
+     *
      * @param SessionInterface $session Session to store game state.
-     * 
+     *
      * @return Response Redirects to the game play route.
      */
     #[Route("/game/restart", name: "game_restart")]

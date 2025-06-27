@@ -134,7 +134,7 @@ final class LibraryController extends AbstractController
      */
     #[Route('/library/update/{id}', name: 'book_update', methods: ['GET', 'POST'])]
     public function updateBook(
-        ManagerRegistry $doctrine, 
+        ManagerRegistry $doctrine,
         LibraryRepository $libraryRepository,
         int $id,
         Request $request

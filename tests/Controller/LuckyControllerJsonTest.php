@@ -14,7 +14,7 @@ class LuckyControllerJsonTest extends WebTestCase
      *
      * @return void
      */
-     public function testJsonLuckyNumber(): void
+    public function testJsonLuckyNumber(): void
     {
         $client = static::createClient();
         $client->request('GET', '/api/lucky/number');

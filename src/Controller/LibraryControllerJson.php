@@ -12,12 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class LibraryControllerJson extends AbstractController
 {
-     /**
-     * API library books returns all books in the library.
-     *
-     * @param LibraryRepository $libraryRepository to fetch book data.
-     * @return JsonResponse The list of books in JSON format.
-     */
+    /**
+    * API library books returns all books in the library.
+    *
+    * @param LibraryRepository $libraryRepository to fetch book data.
+    * @return JsonResponse The list of books in JSON format.
+    */
     #[Route("/api/library/books", name: "api_library_books")]
     public function apiShowLibrary(LibraryRepository $libraryRepository): JsonResponse
     {
@@ -27,7 +27,7 @@ class LibraryControllerJson extends AbstractController
 
     /**
      * API library book returns a single book by its ISBN.
-     * 
+     *
      * @param LibraryRepository $libraryRepository to fetch book data.
      * @return JsonResponse
      */

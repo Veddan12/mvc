@@ -31,7 +31,7 @@ class DiceGraphic extends Dice
     {
         parent::__construct();
     }
-    
+
     /**
      * Get the graphical string representation of the current dice value.
      *

@@ -3,7 +3,6 @@
 namespace App\Tests\Dice;
 
 use PHPUnit\Framework\TestCase;
-
 use App\Dice\Dice;
 use App\Dice\DiceHand;
 
@@ -12,9 +11,9 @@ use App\Dice\DiceHand;
  */
 class DiceHandTest extends TestCase
 {
-     /**
-     * Test adding dice to the hand and counting them.
-     */
+    /**
+    * Test adding dice to the hand and counting them.
+    */
     public function testAddAndGetNumberDices(): void
     {
         $hand = new DiceHand();

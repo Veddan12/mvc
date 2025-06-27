@@ -3,7 +3,6 @@
 namespace App\Tests\Dice;
 
 use PHPUnit\Framework\TestCase;
-
 use App\Dice\DiceGraphic;
 
 /**

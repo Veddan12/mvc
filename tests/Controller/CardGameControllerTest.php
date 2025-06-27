@@ -22,11 +22,11 @@ class CardGameControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
-     /**
-     * Test the /card/deck/ route displays a sorted deck.
-     *
-     * @return void
-     */
+    /**
+    * Test the /card/deck/ route displays a sorted deck.
+    *
+    * @return void
+    */
     public function testSortedDeck(): void
     {
         $client = static::createClient();
@@ -115,7 +115,7 @@ class CardGameControllerTest extends WebTestCase
 
         // Assert redirection to /card/session
         $this->assertResponseRedirects('/card/session');
-        
+
         $client->followRedirect();
         $this->assertResponseIsSuccessful();
 

@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class DiceGameControllerTest extends WebTestCase
 {
-
     /**
      * Test that the Pig game home page.
      */
@@ -44,7 +43,7 @@ class DiceGameControllerTest extends WebTestCase
         $client->request('GET', '/game/pig/test/roll/5');
 
         $this->assertResponseIsSuccessful();
-          $this->assertSelectorExists('.die');
+        $this->assertSelectorExists('.die');
     }
 
     /**

@@ -169,7 +169,7 @@ class DiceGameController extends AbstractController
         return $this->render('pig/play.html.twig', $data);
     }
 
-    
+
     /**
      * Handle rolling the dice and update round score.
      *
