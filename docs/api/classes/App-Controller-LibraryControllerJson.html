@@ -137,11 +137,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/LibraryControllerJson.php"><a href="files/src-controller-librarycontrollerjson.html"><abbr title="src/Controller/LibraryControllerJson.php">LibraryControllerJson.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Controller that handles Library JSON API routes.</p>
+
 
 
 
@@ -176,12 +177,21 @@
     <span>
                                 &nbsp;: <abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr>    </span>
 </dt>
+<dd>API library book returns a single book by its ISBN.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Controller-LibraryControllerJson.html#method_apiShowLibrary">apiShowLibrary()</a>
     <span>
                                 &nbsp;: <abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr>    </span>
 </dt>
+<dd>API library books returns all books in the library.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/App-Controller-LibraryControllerJson.html#method_createPrettyJsonResponse">createPrettyJsonResponse()</a>
+    <span>
+                                &nbsp;: <abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr>    </span>
+</dt>
+<dd>Helper method to create a JSON response with pretty print formatting.</dd>
 
     </dl>
 
@@ -211,11 +221,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/LibraryControllerJson.php"><a href="files/src-controller-librarycontrollerjson.html"><abbr title="src/Controller/LibraryControllerJson.php">LibraryControllerJson.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">API library book returns a single book by its ISBN.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">apiShowBookIsbn</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-LibraryRepository.html"><abbr title="\App\Repository\LibraryRepository">LibraryRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$libraryRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$isbn</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr></span></code>
@@ -231,7 +242,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-LibraryRepository.html"><abbr title="\App\Repository\LibraryRepository">LibraryRepository</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>to fetch book data.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$isbn</span>
@@ -283,11 +296,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/LibraryControllerJson.php"><a href="files/src-controller-librarycontrollerjson.html"><abbr title="src/Controller/LibraryControllerJson.php">LibraryControllerJson.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">API library books returns all books in the library.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">apiShowLibrary</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-LibraryRepository.html"><abbr title="\App\Repository\LibraryRepository">LibraryRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$libraryRepository</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr></span></code>
@@ -303,7 +317,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-Repository-LibraryRepository.html"><abbr title="\App\Repository\LibraryRepository">LibraryRepository</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>to fetch book data.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -331,6 +347,63 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The list of books in JSON format.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_createPrettyJsonResponse">
+        createPrettyJsonResponse()
+        <a href="classes/App-Controller-LibraryControllerJson.html#method_createPrettyJsonResponse" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/LibraryControllerJson.php"><a href="files/src-controller-librarycontrollerjson.html"><abbr title="src/Controller/LibraryControllerJson.php">LibraryControllerJson.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Helper method to create a JSON response with pretty print formatting.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">createPrettyJsonResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\JsonResponse">JsonResponse</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The formatted JSON response.</p>
+</section>
+
             </section>
 
 </article>
@@ -449,6 +522,7 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/App-Controller-LibraryControllerJson.html#method_apiShowBookIsbn">apiShowBookIsbn()</a></li>
                                             <li class=""><a href="classes/App-Controller-LibraryControllerJson.html#method_apiShowLibrary">apiShowLibrary()</a></li>
+                                            <li class=""><a href="classes/App-Controller-LibraryControllerJson.html#method_createPrettyJsonResponse">createPrettyJsonResponse()</a></li>
                                     </ul>
             </li>
                     </ul>

@@ -137,12 +137,15 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/DiceGraphic.php"><a href="files/src-dice-dicegraphic.html"><abbr title="src/Dice/DiceGraphic.php">DiceGraphic.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Class DiceGraphic</p>
 
+
+    <section class="phpdocumentor-description"><p>Extends the Dice class to represent the dice value using Unicode dice face characters.</p>
+</section>
 
 
 
@@ -195,24 +198,28 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>DiceGraphic constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Dice-DiceGraphic.html#method_getAsString">getAsString()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>Get the graphical string representation of the current dice value.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Dice-Dice.html#method_getValue">getValue()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
+<dd>Get the current value of the dice.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Dice-Dice.html#method_roll">roll()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
+<dd>Rolls the dice, random value between 1 and 6.</dd>
 
     </dl>
 
@@ -244,7 +251,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -280,7 +287,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/DiceGraphic.php"><a href="files/src-dice-dicegraphic.html"><abbr title="src/Dice/DiceGraphic.php">DiceGraphic.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -321,11 +328,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/DiceGraphic.php"><a href="files/src-dice-dicegraphic.html"><abbr title="src/Dice/DiceGraphic.php">DiceGraphic.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">DiceGraphic constructor.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -355,11 +363,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/DiceGraphic.php"><a href="files/src-dice-dicegraphic.html"><abbr title="src/Dice/DiceGraphic.php">DiceGraphic.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the graphical string representation of the current dice value.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getAsString</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
@@ -376,6 +385,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Unicode character representing the dice face.</p>
+</section>
+
             </section>
 
 </article>
@@ -393,11 +406,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the current value of the dice.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getValue</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
@@ -408,12 +422,33 @@
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/App-Dice-Dice.html#method_getValue#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\LogicException">LogicException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>if the dice has not been rolled yet.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The face value of the dice.</p>
+</section>
+
             </section>
 
 </article>
@@ -431,11 +466,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Dice/Dice.php"><a href="files/src-dice-dice.html"><abbr title="src/Dice/Dice.php">Dice.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Rolls the dice, random value between 1 and 6.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">roll</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
@@ -452,6 +488,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The value of the dice after rolling.</p>
+</section>
+
             </section>
 
 </article>
