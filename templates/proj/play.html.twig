@@ -1,0 +1,70 @@
+{% extends 'baseproject.html.twig' %}
+
+{% block title %}Black Jack{% endblock %}
+
+{% block body %}
+    <h1>Black Jack</h1>
+
+    <section class="display-section">
+        {% for hand in blackJack.getPlayerHands() %}
+        <h2>
+            Hand {{ loop.index }} — Total: {{ hand.getTotalBlackJack() }}
+            {% if loop.index0 == blackJack.getCurrentHandIndex() %}
+            {% endif %}
+        </h2>
+        <p><strong>Your bet:</strong> {{ blackJack.getBet() }} kr</p>
+
+        <div class="display-deck">
+            {% for card in hand.getCards() %}
+                <div class="display-card">
+                    <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if loop.index0 == blackJack.getCurrentHandIndex() and not gameOver %}
+            <form class="proj-form" method="post" action="{{ path('proj_play_post') }}">
+                <button class="proj-button" type="submit" name="action" value="draw">Dra kort</button>
+                <button class="proj-button" type="submit" name="action" value="stay">Stanna</button>
+            </form>
+        {% endif %}
+        {% endfor %}
+    </section>
+
+    <section class="display-section">
+        {% if gameOver %}
+        <h2>Banken: {{ blackJack.getBankHand().getTotalBlackJack() }}</h2>
+            
+        <div class="display-deck">
+            {% for card in blackJack.getBankHand().getCards() %}
+                <div class="display-card">
+                    <div>{{ card.value }} {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}<span class="red">{% endif %}{% if card.suit == 'Hearts' %}&hearts;{% elseif card.suit == 'Spades' %}&spades;{% elseif card.suit == 'Diamonds' %}&diams;{% elseif card.suit == 'Clubs' %}&clubs;{% endif %}</span></div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if results %}
+            <h3>Resultat: </h3>
+            <ul>
+                {% for res in results %}
+                    <li>{{ res }}</li>
+                {% endfor %}
+            </ul>
+            <form class="proj-form" action="{{ path('proj_round') }}" method="get">
+                <button class="proj-button" type="submit">Start New round</button>
+            </form>
+            <form class="proj-form" action="{{ path('proj_new_player') }}" method="post">
+                <button class="proj-button" type="submit">Ny spelare</button>
+            </form>
+        {% endif %}
+    </section>
+
+    {% if balance is defined %}
+        {% if gameOver %}
+            <p><strong>Your balance:</strong> {{ balance }} kr </p>
+            <form method="POST" action="{{ path('proj_cashout') }}">
+                <button class="proj-button" type="submit">Cash Out</button>
+            </form>
+        {% endif %}
+    {% endif %}
+{% endblock %}

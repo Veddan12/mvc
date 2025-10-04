@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/glider.svg') }}">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="project">
+        <header class="project-header">
+            <span class="site-title"></span>
+        </header>
+        <nav class="project-navbar">
+            <ul>
+                <li>
+                    <a href="{{ path('project') }}">Hem</a>
+                    <a href="{{ path('project_about') }}">Om</a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="project-main">
+        {% block body %}{% endblock %}
+        </main>
+        <footer class="project-footer">
+            <span class"footer-text">Copyright &copy; av Veddan.</span>
+        </footer>
+    </body>
+</html>

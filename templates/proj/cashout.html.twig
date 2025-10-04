@@ -1,0 +1,15 @@
+{% extends "baseproject.html.twig" %}
+
+{% block title %}Cash out{% endblock %}
+
+{% block body %}
+<h1>Cash out</h1>
+
+{# Display the flash message #}
+{% include 'flash.html.twig' %}
+
+<p>Start a new game?</p>
+<form method="POST" action="{{ path('proj_new_player') }}">
+    <button class="proj-button" type="submit">New Game</button>
+</form>
+{% endblock %}

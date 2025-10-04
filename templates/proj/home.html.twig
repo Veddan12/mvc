@@ -1,0 +1,32 @@
+{% extends "baseproject.html.twig" %}
+
+{% block title %}Projekt{% endblock %}
+
+{% block body %}
+<h1>Black Jack</h1>
+
+{# Include the flash messages block #}
+{% include 'flash.html.twig' %}
+
+<form method="POST" action="{{ path('enter_bet_post') }}">
+    <label for="playerName">Your Name:</label>
+    {% if playerName %}
+        <input type="text" name="playerName" id="playerName" value="{{ playerName }}" readonly>
+    {% else %}
+        <input type="text" name="playerName" id="playerName" required>
+    {% endif %}
+
+    <label for="betAmount">Bet Amount:</label>
+    <input type="number" name="betAmount" id="betAmount" min="1" max="1000" required>
+
+    <label for="numHands">Number of hands:</label>
+    <select name="numHands" id="numHands">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <input class="proj-button" type="submit" value="Start game">
+</form>
+
+{% endblock %}

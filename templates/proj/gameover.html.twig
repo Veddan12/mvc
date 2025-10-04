@@ -1,0 +1,20 @@
+{% extends "baseproject.html.twig" %}
+
+{% block title %}Game Over{% endblock %}
+
+{% block body %}
+<h1>Game Over</h1>
+
+<p>
+    {% if playerName %}
+        {{ playerName }}, you have no more funds (Balance: {{ balance }}).
+    {% else %}
+        You have no more funds (Balance: {{ balance }}).
+    {% endif %}
+</p>
+
+<p>Start a new game?</p>
+<form method="POST" action="{{ path('proj_new_player') }}">
+    <button class="proj-button" type="submit">New Game</button>
+</form>
+{% endblock %}

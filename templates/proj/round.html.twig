@@ -1,0 +1,27 @@
+{% extends "baseproject.html.twig" %}
+
+{% block title %}Projekt{% endblock %}
+
+{% block body %}
+<h1>Start New Round</h1>
+
+{# Include the flash messages block #}
+{% include 'flash.html.twig' %}
+
+<p><strong>Current Balance:</strong> {{ blackJack.getBalance() }} kr</p>
+
+<form method="post" action="{{ path('proj_new_round') }}">
+    <label for="betAmount">Enter your new bet:</label>
+    <input type="number" name="betAmount" id="betAmount" required min="1">
+
+    <label for="numHands">Choose number of hands:</label>
+    <select name="numHands" id="numHands" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <button class="proj-button" type="submit">Start Round</button>
+</form>
+
+{% endblock %}
