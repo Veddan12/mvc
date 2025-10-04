@@ -56,6 +56,38 @@ class CardHand
     }
 
     /**
+     * Calculate total points of the hand for black jack game.
+     * Handle the Aces.
+     * @return int
+     */
+    public function getTotalBlackJack(): int
+    {
+        $sum = 0;
+        $aces = 0;
+
+        foreach ($this->cards as $card) {
+            if ($card->getValue() === 'Ace') {
+                $aces++;
+                continue;
+            }
+            $sum += $card->getBlackJackNumericValue();
+        }
+
+        for ($i = 0; $i < $aces; $i++) {
+            $sum += 11;
+            if ($sum > 21) {
+                $sum -= 10;
+            }
+        }
+        return $sum;
+    }
+
+    public function getNrOfCards(): int
+    {
+        return count($this->cards);
+    }
+
+    /**
      * Convert the hand to an array.
      *
      * @return array<int, array<string, string>>

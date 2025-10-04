@@ -66,6 +66,9 @@ class Game21
         $this->gameOver = true;
     }
 
+    /**
+     * Compare the final results of the game.
+     */
     public function compareResults(): string
     {
         $player = $this->playerHand->getTotal();

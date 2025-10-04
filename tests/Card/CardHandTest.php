@@ -79,4 +79,21 @@ class CardHandTest extends TestCase
 
         $this->assertEquals(1 + 14 + 1, $cardhand->getTotal());
     }
+
+    public function testGetTotalBlackJack(): void
+    {
+        $hand = new CardHand();
+
+        // Total without ace 20
+        $hand->addCard(new Card('Hearts', '10'));
+        $hand->addCard(new Card('Clubs', '10'));
+
+        // Add an Ace — total would be 31, Ace becomes 1 instead
+        $hand->addCard(new Card('Spades', 'Ace'));
+
+        $total = $hand->getTotalBlackJack();
+
+        // Expect Ace to be counted as 1
+        $this->assertEquals(21, $total);
+    }
 }

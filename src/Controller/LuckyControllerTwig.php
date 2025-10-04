@@ -115,5 +115,4 @@ class LuckyControllerTwig extends AbstractController
     {
         return $this->render('metrics.html.twig');
     }
-
 }

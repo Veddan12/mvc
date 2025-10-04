@@ -62,6 +62,22 @@ class Card
     }
 
     /**
+     * Get the numeric/point value of the card for black jack game.
+     *
+     * @return int
+     */
+    public function getBlackJackNumericValue(): int
+    {
+        return match ($this->value) {
+            'King'  => 10,
+            'Queen' => 10,
+            'Jack'  => 10,
+            'Ace'   => 1,
+            default => (int)$this->value,
+        };
+    }
+
+    /**
      * String representation of the card.
      *
      * @return string The card in the format "Value of Suit" -> "King of Hearts".
