@@ -16,8 +16,17 @@ final class ProjectController extends AbstractController
     /**
     * Renders the project index page.
     */
-    #[Route('/proj', name: 'project')]
-    public function proj(SessionInterface $session): Response
+    #[Route('/proj', name: 'project_welcome')]
+    public function proj(): Response
+    {
+        return $this->render('proj/welcome.html.twig');
+    }
+
+    /**
+    * Renders the project starting game page.
+    */
+    #[Route('/proj/start', name: 'project')]
+    public function startProj(SessionInterface $session): Response
     {
         $playerName = $session->get('playerName', null);
 

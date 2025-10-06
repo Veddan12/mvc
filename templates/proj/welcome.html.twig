@@ -1,0 +1,22 @@
+{% extends "baseproject.html.twig" %}
+
+{% block title %}Projekt{% endblock %}
+
+{% block body %}
+<h1>Black Jack</h1>
+
+<div class="welcome-container" style="text-align:center; padding:2rem;">
+    <p>
+        Test you luck in this classic casino game.
+        Your only goal is to have fun, and if possible try to reach 21 without going over!
+    <p>
+
+    <p>
+        Start by entering your name and placing a bet.
+        Choose how many hands you want to play!
+    <p>
+
+    <a href="{{ path('project') }}" class="proj-button" style="margin-top:1rem;">Let's Play</a>
+</div>
+
+{% endblock %}
