@@ -20,9 +20,6 @@
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
-            <exclude>
-                <directory>tests/Controller</directory>
-            </exclude>
         </testsuite>
     </testsuites>
 
@@ -30,6 +27,11 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">src/Repository</directory>
+            <directory suffix=".php">src/Controller</directory>
+            <directory suffix=".php">tests</directory>
+        </exclude>
 
         <report>
             <clover outputFile="docs/coverage.clover"/>

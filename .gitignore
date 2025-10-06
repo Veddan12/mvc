@@ -35,3 +35,7 @@ yarn-error.log
 /tools/**/composer.lock
 .php-cs-fixer.cache
 .phpdoc/
+
+# sass cache and map
+.sass-cache/
+style.css.map
