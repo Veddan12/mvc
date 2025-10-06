@@ -252,6 +252,11 @@ button {
 
 /*Project style*/
 
+body.project {
+    background-color: #0b3d0b;
+    color: #f5f5dc;
+}
+
 .project-footer {
     display: flex;
     justify-content: space-around;
@@ -259,7 +264,9 @@ button {
     padding-top: 50px;
     padding-bottom: 20px;
     font-size: 1.2rem;
-    color: #ec7171;
+    color: #d4af37;
+    border-top: 2px solid #d4af37;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .project-footer {
@@ -270,7 +277,7 @@ button {
     display: flex;
     box-sizing: border-box;
     margin: auto;
-    border-bottom: 4px solid #ec7171;
+    border-bottom: 3px solid #d4af37;
     overflow: auto;
     font-size: 1.6rem;
     width: 100%;
@@ -283,13 +290,15 @@ button {
 
 .project-navbar a {
     display: inline-block;
-    padding:.2em .2em;
+    padding:.2em .6em;
     text-decoration: none;
+    color: #f5f5dc;
+    transition: 0.3s ease;
 }
 
 .project-navbar a:hover {
-    color: #f1eeee;
-    background-color:#ec7171;
+    color: #0b3d0b;
+    background-color: #d4af37;
     text-decoration: underline;
 }
 
@@ -312,7 +321,7 @@ button {
   font-weight: 300;
   font-size: 1.6rem;
   text-transform: uppercase;
-  color: #fff;
+  color: #d4af37;
   text-align: center;
 }
 
@@ -326,17 +335,25 @@ button {
     max-width: 800px;
     border-left: none;
     border-right: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    margin-top: 20px;
 }
 
 .project h1 {
     border-bottom: none;
     font-weight: 300;
+    text-align: center;
+    color: #d4af37;
 }
 
 .project h2, h3 {
     display: flex;
     justify-content: center;
     font-weight: 300;
+    color: #f5f5dc;
 }
 
 .project .title {
@@ -345,12 +362,20 @@ button {
 
 .proj-button {
     padding: 15px 25px;
-    background-color: #490101;
+    background-color: #1f7a1f;
     color: #fff;
-    border: none;
+    border: 2px solid #d4af37;
     border-radius: 25px;
     font-size: 16px;
     margin-top: 10px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.proj-button:hover {
+    background-color: #d4af37;
+    color: #0b3d0b;
+    cursor: pointer;
 }
 
 .display-deck {
@@ -362,7 +387,7 @@ button {
 }
 
 .display-card {
-    border: 2px solid #333;
+    border: 2px solid #d4af37;
     padding: 10px;
     width: 80px;
     height: 100px;
@@ -372,6 +397,7 @@ button {
     background-color: white;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     border-radius: 5px;
+    color: #000;
 }
 
 .display-section {
