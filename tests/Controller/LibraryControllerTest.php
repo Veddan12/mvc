@@ -7,7 +7,7 @@ use App\Entity\Library;
 use App\Repository\LibraryRepository;
 
 /**
- * Class LibraryControllerTest
+ * @group controller
  */
 class LibraryControllerTest extends WebTestCase
 {

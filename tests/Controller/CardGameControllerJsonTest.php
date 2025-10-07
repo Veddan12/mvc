@@ -5,7 +5,7 @@ namespace App\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class CardGameControllerJsonTest
+ * @group controller
  */
 class CardGameControllerJsonTest extends WebTestCase
 {

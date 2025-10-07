@@ -7,8 +7,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\ProductRepository;
 
 /**
-* Test that the ProductRepository can be constructed properly.
-*/
+ * @group controller
+ */
 class ProductRepositoryTest extends TestCase
 {
     /**

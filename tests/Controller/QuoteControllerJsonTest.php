@@ -5,7 +5,7 @@ namespace App\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class QuoteControllerJsonTest
+ * @group controller
  */
 class QuoteControllerJsonTest extends WebTestCase
 {

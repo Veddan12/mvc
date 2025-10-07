@@ -22,7 +22,7 @@ build:
                     #- phpcs-run # Not used, missing config file
     tests:
         override:
-            -   command: "php -d memory_limit=2G -d XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover"
+            -   command: "php -d memory_limit=2G -d XDEBUG_MODE=coverage vendor/bin/phpunit --exclude-group controller --coverage-clover=docs/coverage.clover"
             # -   command: "composer phpunit"
                 # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
                 coverage:

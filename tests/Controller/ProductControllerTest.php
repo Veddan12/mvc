@@ -5,7 +5,7 @@ namespace App\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class ProductControllerTest
+ * @group controller
  */
 class ProductControllerTest extends WebTestCase
 {

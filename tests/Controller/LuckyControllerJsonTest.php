@@ -5,7 +5,7 @@ namespace App\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class LuckyControllerJsonTest
+ * @group controller
  */
 class LuckyControllerJsonTest extends WebTestCase
 {

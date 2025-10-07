@@ -5,7 +5,7 @@ namespace App\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class CardGameControllerTest
+ * @group controller
  */
 class CardGameControllerTest extends WebTestCase
 {

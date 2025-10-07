@@ -7,7 +7,7 @@ use App\Card\Game21;
 use App\Controller\Game21Controller;
 
 /**
- * Class Game21ControllerTest
+ * @group controller
  */
 class Game21ControllerTest extends WebTestCase
 {

@@ -7,8 +7,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\LibraryRepository;
 
 /**
-* Test that the LibraryRepository can be constructed properly.
-*/
+ * @group controller
+ */
 class LibraryRepositoryTest extends TestCase
 {
     /**

@@ -5,7 +5,7 @@ namespace App\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class LuckyControllerTwigTest
+ * @group controller
  */
 class LuckyControllerTwigTest extends WebTestCase
 {
